@@ -896,7 +896,6 @@ button:not(:disabled):active {
     animation-delay: -25s;
 }
 
-/* אנימציות AWS מתקדמות עם תנועה עדינה */
 @keyframes awsFloat1 {
     0% {
         transform: translateX(0) translateY(0) scale(1);
@@ -1093,7 +1092,6 @@ button:not(:disabled):active {
     }
 }
 
-/* אנימציית Reflection Loop יוקרתית ועדינה */
 @keyframes reflectionSweep {
     0% {
         opacity: 0;
