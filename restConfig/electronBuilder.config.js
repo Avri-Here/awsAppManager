@@ -28,13 +28,12 @@ const baseConfig = {
         perMachine: false,
         allowToChangeInstallationDirectory: false,
         createDesktopShortcut: true,
-        createStartMenuShortcut: true,
-        // guid: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
-        differentialPackage: false,
-        allowElevation: false,
-        installerIcon: "src/assets/icons/managerAws.ico",
-        uninstallerIcon: "src/assets/icons/managerAws.ico",
+        createStartMenuShortcut: false,
+        // installerIcon: "src/assets/icons/managerAws.ico",
+        // uninstallerIcon: "src/assets/icons/managerAws.ico",
         shortcutName: "awsAppManager",
+        differentialPackage: true,
+        deleteAppDataOnUninstall: false
     }
 };
 
@@ -49,7 +48,7 @@ const platformSpecificConfigurations = {
     },
     win32: {
         ...baseConfig,
-        artifactName: "${productName}-${version}.${ext}",
+        artifactName: "${productName}-Setup-${version}.${ext}",
         appx: {
             applicationId: "com.avri.awsAppManager",
             backgroundColor: "#1F1F1F",
@@ -65,13 +64,13 @@ const platformSpecificConfigurations = {
                 target: "nsis",
                 arch: ["x64"]
             }],
-            legalTrademarks: "Avri © 2025",
-            verifyUpdateCodeSignature: false,
-            signAndEditExecutable: false,
-            signDlls: false,
-            publisherName: "Avri-Here",
+            // legalTrademarks: "Avri © 2025",
+            // verifyUpdateCodeSignature: false,
+            // signAndEditExecutable: false,
+            // signDlls: false,
+            // publisherName: "Avri-Here",
         },
-        compression: "normal",
+        compression: "maximum",
         detectUpdateChannel: true,
     },
     linux: {

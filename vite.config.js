@@ -58,18 +58,18 @@ export default defineConfig(({ command }) => {
             sourcemap,
             emptyOutDir: true,
             outDir: rendererOutDir,
-            minify: 'esbuild',
-            target: 'esnext',
-            chunkSizeWarningLimit: 2000,
-            rollupOptions: {
-                output: {
-                    manualChunks: {
-                        vendor: ['react', 'react-dom'],
-                        aws: ['@aws-sdk/client-codeartifact', '@aws-sdk/client-sts', '@aws-sdk/credential-providers'],
-                        ui: ['@fluentui/react-components', '@fluentui/react-icons']
-                    }
-                }
-            }
+            // minify: 'esbuild',
+            // target: 'esnext',
+            // chunkSizeWarningLimit: 2000,
+            // rollupOptions: {
+            //     output: {
+            //         manualChunks: {
+            //             vendor: ['react', 'react-dom'],
+            //             aws: ['@aws-sdk/client-codeartifact', '@aws-sdk/client-sts', '@aws-sdk/credential-providers'],
+            //             ui: ['@fluentui/react-components', '@fluentui/react-icons']
+            //         }
+            //     }
+            // }
         },
         plugins: [
             react(),
