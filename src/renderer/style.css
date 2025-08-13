@@ -555,10 +555,10 @@ button:not(:disabled):active {
 
 .glassmorphism-background {
     position: absolute;
-    top: 0;
+    top: 56px;
     left: 0;
     width: 100%;
-    height: calc(100% - 65px);
+    height: calc(100% - 116px);
     overflow: hidden;
     z-index: 1;
     pointer-events: none;
@@ -592,81 +592,109 @@ button:not(:disabled):active {
 }
 
 .glass-orb-1 {
-    top: 15%;
-    left: 10%;
-    width: 120px;
-    height: 120px;
+    top: 12%;
+    left: 8%;
+    width: 60px;
+    height: 60px;
     background: radial-gradient(circle at 30% 30%,
             rgba(255, 255, 255, 0.15) 0%,
             rgba(0, 120, 212, 0.1) 40%,
             transparent 70%);
     animation: glassFloat1 20s ease-in-out infinite;
-    filter: drop-shadow(0 8px 32px rgba(0, 120, 212, 0.15));
+    filter: drop-shadow(0 4px 16px rgba(0, 120, 212, 0.15));
 }
 
 .glass-orb-2 {
-    top: 60%;
-    right: 15%;
-    width: 90px;
-    height: 90px;
+    top: 65%;
+    right: 12%;
+    width: 45px;
+    height: 45px;
     background: radial-gradient(circle at 70% 70%,
             rgba(255, 255, 255, 0.12) 0%,
             rgba(0, 120, 212, 0.08) 35%,
             transparent 65%);
     animation: glassFloat2 24s ease-in-out infinite;
-    filter: drop-shadow(0 6px 24px rgba(0, 120, 212, 0.12));
+    filter: drop-shadow(0 3px 12px rgba(0, 120, 212, 0.12));
 }
 
 .glass-orb-3 {
-    top: 35%;
-    left: 70%;
-    width: 110px;
-    height: 110px;
+    top: 28%;
+    left: 75%;
+    width: 55px;
+    height: 55px;
     background: radial-gradient(circle at 50% 20%,
             rgba(255, 255, 255, 0.13) 0%,
             rgba(0, 120, 212, 0.09) 38%,
             transparent 68%);
     animation: glassFloat3 26s ease-in-out infinite;
-    filter: drop-shadow(0 7px 28px rgba(0, 120, 212, 0.13));
+    filter: drop-shadow(0 4px 14px rgba(0, 120, 212, 0.13));
 }
 
 .glass-orb-4 {
-    top: 75%;
-    left: 25%;
-    width: 80px;
-    height: 80px;
+    top: 78%;
+    left: 35%;
+    width: 40px;
+    height: 40px;
     background: radial-gradient(circle at 80% 30%,
             rgba(255, 255, 255, 0.11) 0%,
             rgba(0, 120, 212, 0.07) 42%,
             transparent 72%);
     animation: glassFloat4 22s ease-in-out infinite;
-    filter: drop-shadow(0 5px 22px rgba(0, 120, 212, 0.1));
+    filter: drop-shadow(0 2px 10px rgba(0, 120, 212, 0.1));
 }
 
 .glass-orb-5 {
-    top: 8%;
-    right: 35%;
-    width: 100px;
-    height: 100px;
+    top: 5%;
+    right: 25%;
+    width: 50px;
+    height: 50px;
     background: radial-gradient(circle at 40% 60%,
             rgba(255, 255, 255, 0.14) 0%,
             rgba(0, 120, 212, 0.09) 36%,
             transparent 66%);
     animation: glassFloat5 28s ease-in-out infinite;
-    filter: drop-shadow(0 6px 26px rgba(0, 120, 212, 0.14));
+    filter: drop-shadow(0 3px 13px rgba(0, 120, 212, 0.14));
 }
 
 .glass-orb-6 {
-    top: 45%;
-    left: 5%;
-    width: 75px;
-    height: 75px;
+    top: 42%;
+    left: 3%;
+    width: 38px;
+    height: 38px;
     background: radial-gradient(circle at 60% 80%,
             rgba(255, 255, 255, 0.1) 0%,
             rgba(0, 120, 212, 0.06) 44%,
             transparent 74%);
     animation: glassFloat6 25s ease-in-out infinite;
-    filter: drop-shadow(0 4px 20px rgba(0, 120, 212, 0.09));
+    filter: drop-shadow(0 2px 10px rgba(0, 120, 212, 0.09));
+}
+
+.glass-orb-7 {
+    top: 18%;
+    left: 45%;
+    width: 35px;
+    height: 35px;
+    background: radial-gradient(circle at 30% 70%,
+            rgba(255, 255, 255, 0.12) 0%,
+            rgba(0, 120, 212, 0.08) 40%,
+            transparent 70%);
+    animation: glassFloat1 30s ease-in-out infinite;
+    animation-delay: -5s;
+    filter: drop-shadow(0 2px 8px rgba(0, 120, 212, 0.11));
+}
+
+.glass-orb-8 {
+    top: 55%;
+    right: 40%;
+    width: 42px;
+    height: 42px;
+    background: radial-gradient(circle at 80% 20%,
+            rgba(255, 255, 255, 0.13) 0%,
+            rgba(0, 120, 212, 0.09) 35%,
+            transparent 65%);
+    animation: glassFloat2 27s ease-in-out infinite;
+    animation-delay: -8s;
+    filter: drop-shadow(0 3px 11px rgba(0, 120, 212, 0.12));
 }
 
 
@@ -678,18 +706,18 @@ button:not(:disabled):active {
     }
 
     25% {
-        transform: translateY(-12px) translateX(8px) scale(1.03) rotate(2deg);
-        opacity: 0.9;
+        transform: translateY(-6px) translateX(4px) scale(1.02) rotate(1deg);
+        opacity: 0.85;
     }
 
     50% {
-        transform: translateY(5px) translateX(-10px) scale(0.97) rotate(-1deg);
-        opacity: 0.8;
+        transform: translateY(3px) translateX(-5px) scale(0.98) rotate(-0.5deg);
+        opacity: 0.75;
     }
 
     75% {
-        transform: translateY(10px) translateX(6px) scale(1.01) rotate(1deg);
-        opacity: 0.85;
+        transform: translateY(5px) translateX(3px) scale(1.01) rotate(0.5deg);
+        opacity: 0.8;
     }
 
     100% {
@@ -705,13 +733,13 @@ button:not(:disabled):active {
     }
 
     30% {
-        transform: translateY(15px) translateX(-8px) scale(1.05) rotate(-3deg);
-        opacity: 0.8;
+        transform: translateY(8px) translateX(-4px) scale(1.03) rotate(-1.5deg);
+        opacity: 0.75;
     }
 
     60% {
-        transform: translateY(-8px) translateX(12px) scale(0.94) rotate(2deg);
-        opacity: 0.7;
+        transform: translateY(-4px) translateX(6px) scale(0.97) rotate(1deg);
+        opacity: 0.65;
     }
 
     100% {
@@ -727,12 +755,12 @@ button:not(:disabled):active {
     }
 
     40% {
-        transform: translateY(-18px) translateX(10px) scale(1.04) rotate(4deg);
-        opacity: 0.9;
+        transform: translateY(-9px) translateX(5px) scale(1.02) rotate(2deg);
+        opacity: 0.85;
     }
 
     70% {
-        transform: translateY(8px) translateX(-6px) scale(0.96) rotate(-2deg);
+        transform: translateY(4px) translateX(-3px) scale(0.98) rotate(-1deg);
         opacity: 0.8;
     }
 
@@ -749,12 +777,12 @@ button:not(:disabled):active {
     }
 
     35% {
-        transform: translateY(12px) translateX(14px) scale(1.06) rotate(3deg);
-        opacity: 0.85;
+        transform: translateY(6px) translateX(7px) scale(1.03) rotate(1.5deg);
+        opacity: 0.8;
     }
 
     65% {
-        transform: translateY(-6px) translateX(-8px) scale(0.95) rotate(-1deg);
+        transform: translateY(-3px) translateX(-4px) scale(0.97) rotate(-0.5deg);
         opacity: 0.7;
     }
 
@@ -772,18 +800,18 @@ button:not(:disabled):active {
     }
 
     25% {
-        transform: translateY(-15px) translateX(10px) scale(1.05);
-        opacity: 1;
-    }
-
-    50% {
-        transform: translateY(-8px) translateX(-5px) scale(0.95);
+        transform: translateY(-8px) translateX(6px) scale(1.02);
         opacity: 0.9;
     }
 
-    75% {
-        transform: translateY(12px) translateX(8px) scale(1.02);
+    50% {
+        transform: translateY(-4px) translateX(-3px) scale(0.98);
         opacity: 0.85;
+    }
+
+    75% {
+        transform: translateY(6px) translateX(4px) scale(1.01);
+        opacity: 0.8;
     }
 
     100% {
@@ -799,12 +827,12 @@ button:not(:disabled):active {
     }
 
     30% {
-        transform: translateY(18px) translateX(-12px) scale(1.08) rotate(5deg);
-        opacity: 0.9;
+        transform: translateY(9px) translateX(-6px) scale(1.03) rotate(2deg);
+        opacity: 0.85;
     }
 
     60% {
-        transform: translateY(-10px) translateX(15px) scale(0.92) rotate(-3deg);
+        transform: translateY(-5px) translateX(8px) scale(0.97) rotate(-1deg);
         opacity: 0.75;
     }
 
