@@ -151,46 +151,39 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
         return isRunning ? styles.statusDotRunning : styles.statusDotReady;
     }, [isRunning, styles.statusDotRunning, styles.statusDotReady]);
 
-    // פונקציה להפקת מיקום אקראי בטווח הבטוח
     const getRandomPosition = () => {
         const minTop = 12;
         const maxTop = 78;
         const minLeft = 6;
         const maxLeft = 85;
-        
+
         return {
             top: Math.random() * (maxTop - minTop) + minTop,
             left: Math.random() * (maxLeft - minLeft) + minLeft
         };
     };
 
-    // אפקט פיצוץ עדין בסגנון Bubble Pop
     const handleExplodeEffect = (orbElement) => {
-        // שלב 1: הכנה לפיצוץ - Juicy Squeeze
         orbElement.classList.add('pre-explode');
-        
+
         setTimeout(() => {
             orbElement.classList.remove('pre-explode');
-            
-            // שלב 2: פיצוץ עדין עם חלקיקים כחולים
+
             orbElement.classList.add('mega-exploding');
-            
-            // יצירת חלקיקי פיצוץ עדינים
+
             createExplosionParticles(orbElement);
-            
+
             setTimeout(() => {
-                // שלב 3: ניקוי והתחדשות
                 orbElement.style.opacity = '0';
                 orbElement.classList.remove('mega-exploding');
-                
+
                 setTimeout(() => {
-                    // שלב 4: מיקום חדש ואפקט התחדשות עדין
                     const newPosition = getRandomPosition();
                     orbElement.style.top = `${newPosition.top}%`;
                     orbElement.style.left = `${newPosition.left}%`;
                     orbElement.style.opacity = '1';
                     orbElement.classList.add('epic-regenerating');
-                    
+
                     setTimeout(() => {
                         orbElement.classList.remove('epic-regenerating');
                     }, 700);
@@ -199,70 +192,61 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
         }, 120);
     };
 
-    // פונקציה לקבלת מספר אקראי בין min ל-max
     const rand = (min, max) => {
         return Math.floor(Math.random() * (max + 1)) + min;
     };
 
-    // יצירת אפקט פיצוץ חלק כמו בקוד המקורי
     const createExplosionParticles = (orbElement) => {
         const rect = orbElement.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
-        
+
         const particles = 15;
-        
-        // יצירת מכולה לפיצוץ
+
         const explosion = document.createElement('div');
         explosion.className = 'orb-explosion';
-        
-        // מיקום המכולה במרכז הכדור
-        explosion.style.left = `${centerX - 300}px`; // מחצית מ-600px
+
+        explosion.style.left = `${centerX - 300}px`;
         explosion.style.top = `${centerY - 300}px`;
-        
+
         document.body.appendChild(explosion);
-        
+
         for (let i = 0; i < particles; i++) {
-            // חישוב מיקום החלקיק על מעגל עם רדיוס מעט אקראי - בדיוק כמו בקוד המקורי
-            const x = explosion.offsetWidth / 2 + 
-                     rand(80, 150) * Math.cos((2 * Math.PI * i) / rand(particles - 10, particles + 10));
-            const y = explosion.offsetHeight / 2 + 
-                     rand(80, 150) * Math.sin((2 * Math.PI * i) / rand(particles - 10, particles + 10));
-            
-            // צבעים כחולים תכלת אקראיים פשוטים
+            const x = explosion.offsetWidth / 2 +
+                rand(80, 150) * Math.cos((2 * Math.PI * i) / rand(particles - 10, particles + 10));
+            const y = explosion.offsetHeight / 2 +
+                rand(80, 150) * Math.sin((2 * Math.PI * i) / rand(particles - 10, particles + 10));
+
             const r = rand(0, 100);
             const g = rand(150, 255);
             const b = 255;
             const color = `rgb(${r}, ${g}, ${b})`;
-            
+
             // יצירת חלקיק פשוט
             const particle = document.createElement('div');
             particle.className = 'explosion-particle';
             particle.style.backgroundColor = color;
             particle.style.top = `${y}px`;
             particle.style.left = `${x}px`;
-            
+
             if (i === 0) {
-                // הסרת המכולה כשהאנימציה מסתיימת - בדיוק כמו בקוד המקורי
                 particle.addEventListener('animationend', () => {
                     if (explosion.parentNode) {
                         explosion.parentNode.removeChild(explosion);
                     }
                 });
             }
-            
+
             explosion.appendChild(particle);
         }
     };
 
-    // טיפול בלחיצה על כדור
     const handleOrbClick = (event) => {
         event.stopPropagation();
         const orbElement = event.currentTarget;
-        
-        // בדיקה שהכדור לא כבר באמצע אפקט
+
         if (orbElement.classList.contains('pre-explode') ||
-            orbElement.classList.contains('mega-exploding') || 
+            orbElement.classList.contains('mega-exploding') ||
             orbElement.classList.contains('epic-regenerating')) {
             return;
         }
@@ -274,7 +258,7 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
         <div className={styles.mainContent} style={themeStyles.mainContent}>
             <div className={`glassmorphism-background ${isRunning ? 'running active' : 'ready active'}`}>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(num => (
-                    <div 
+                    <div
                         key={num}
                         className={`glass-orb glass-orb-${num}`}
                         onClick={handleOrbClick}
