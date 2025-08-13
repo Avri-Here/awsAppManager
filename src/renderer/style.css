@@ -767,19 +767,44 @@ button:not(:disabled):active {
 .ready-reflection::before {
     content: '';
     position: absolute;
-    top: -20px;
-    left: -50px;
-    width: 300px;
-    height: 240px;
+    top: -30px;
+    left: -60px;
+    width: 320px;
+    height: 260px;
     background: linear-gradient(45deg, 
         transparent 0%, 
-        transparent 30%, 
-        rgba(255, 255, 255, 0.15) 50%, 
-        transparent 70%, 
+        transparent 40%, 
+        rgba(255, 255, 255, 0.04) 45%, 
+        rgba(255, 255, 255, 0.08) 50%, 
+        rgba(255, 255, 255, 0.04) 55%, 
+        transparent 60%, 
         transparent 100%);
     border-radius: 50%;
-    animation: reflectionSweep 14s ease-in-out infinite;
+    animation: reflectionSweep 15s ease-in-out infinite;
     opacity: 0;
+    filter: blur(1px);
+}
+
+.ready-reflection::after {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: -55px;
+    width: 310px;
+    height: 250px;
+    background: linear-gradient(45deg, 
+        transparent 0%, 
+        transparent 42%, 
+        rgba(255, 255, 255, 0.02) 47%, 
+        rgba(255, 255, 255, 0.04) 50%, 
+        rgba(255, 255, 255, 0.02) 53%, 
+        transparent 58%, 
+        transparent 100%);
+    border-radius: 50%;
+    animation: reflectionSweep 15s ease-in-out infinite;
+    animation-delay: 0.5s;
+    opacity: 0;
+    filter: blur(2px);
 }
 
 .aws-cloud {
@@ -1068,39 +1093,50 @@ button:not(:disabled):active {
     }
 }
 
-/* אנימציית Reflection Loop יוקרתית */
+/* אנימציית Reflection Loop יוקרתית ועדינה */
 @keyframes reflectionSweep {
     0% {
         opacity: 0;
-        transform: rotate(-45deg) translateX(-150px);
+        transform: rotate(-45deg) translateX(-200px) scale(0.8);
     }
     
-    2% {
+    5% {
+        opacity: 0.1;
+        transform: rotate(-45deg) translateX(-120px) scale(0.9);
+    }
+    
+    10% {
         opacity: 0.3;
-    }
-    
-    8% {
-        opacity: 0.8;
-        transform: rotate(-45deg) translateX(0px);
-    }
-    
-    12% {
-        opacity: 0.4;
-        transform: rotate(-45deg) translateX(150px);
+        transform: rotate(-45deg) translateX(-60px) scale(0.95);
     }
     
     15% {
-        opacity: 0;
-        transform: rotate(-45deg) translateX(200px);
+        opacity: 0.5;
+        transform: rotate(-45deg) translateX(0px) scale(1);
     }
     
-    85% {
+    20% {
+        opacity: 0.3;
+        transform: rotate(-45deg) translateX(60px) scale(0.95);
+    }
+    
+    25% {
+        opacity: 0.1;
+        transform: rotate(-45deg) translateX(120px) scale(0.9);
+    }
+    
+    30% {
         opacity: 0;
-        transform: rotate(-45deg) translateX(200px);
+        transform: rotate(-45deg) translateX(200px) scale(0.8);
+    }
+    
+    70% {
+        opacity: 0;
+        transform: rotate(-45deg) translateX(200px) scale(0.8);
     }
     
     100% {
         opacity: 0;
-        transform: rotate(-45deg) translateX(-150px);
+        transform: rotate(-45deg) translateX(-200px) scale(0.8);
     }
 }
