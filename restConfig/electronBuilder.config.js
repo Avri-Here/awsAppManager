@@ -14,7 +14,7 @@ const baseConfig = {
     ],
     extraMetadata: {
         version: process.env.VITE_APP_VERSION,
-        description: "AWS Application Manager - A tool for managing AWS applications",
+        description: "A tool for managing AWS applications",
         author: "Avri-Here"
     },
     publish: {
@@ -29,7 +29,7 @@ const baseConfig = {
         allowToChangeInstallationDirectory: false,
         createDesktopShortcut: true,
         createStartMenuShortcut: false,
-        // guid: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
+        guid: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
         differentialPackage: false
     }
 };
@@ -45,7 +45,7 @@ const platformSpecificConfigurations = {
     },
     win32: {
         ...baseConfig,
-        artifactName: "${productName}-Setup-${version}.${ext}",
+        artifactName: "${productName}-${version}.${ext}",
         appx: {
             applicationId: "com.avri.awsAppManager",
             backgroundColor: "#1F1F1F",
@@ -63,7 +63,7 @@ const platformSpecificConfigurations = {
             }],
             legalTrademarks: "Avri © 2025",
             verifyUpdateCodeSignature: false,
-            requestedExecutionLevel: "asInvoker",
+            // requestedExecutionLevel: "asInvoker",
             signAndEditExecutable: false,
             signDlls: false,
             publisherName: "Avri-Here"
