@@ -390,7 +390,6 @@ button:not(:disabled):active {
     animation: spin 1s linear infinite;
 }
 
-/* Performance Optimized Classes */
 .header-content {
     width: 100%;
     display: flex;
@@ -425,16 +424,13 @@ button:not(:disabled):active {
     gap: 14px;
 }
 
-/* Optimized animations with GPU acceleration */
 
-/* GPU-accelerated transforms */
 .gpu-optimized {
     transform: translateZ(0);
     backface-visibility: hidden;
     perspective: 1000px;
 }
 
-/* Layout optimizations */
 .flex-center {
     display: flex;
     align-items: center;
@@ -447,7 +443,6 @@ button:not(:disabled):active {
     gap: 4px;
 }
 
-/* Safe utility classes - won't affect existing styling */
 .header-content-center {
     width: 100%;
     display: flex;
@@ -496,7 +491,6 @@ button:not(:disabled):active {
     gap: 4px;
 }
 
-/* עננים נעים ברקע */
 .cloud-background {
     position: absolute;
     top: 0;
@@ -652,7 +646,6 @@ button:not(:disabled):active {
     }
 }
 
-/* אנימציות לסמל הענן המרכזי */
 .cloud-icon-large {
     font-size: 64px;
     color: #0078d4;
@@ -734,7 +727,6 @@ button:not(:disabled):active {
     opacity: 1;
 }
 
-/* עננים עדינים למצב Ready */
 .ready-clouds {
     position: absolute;
     top: 0;
@@ -752,7 +744,6 @@ button:not(:disabled):active {
     opacity: 1;
 }
 
-/* רקע glassmorphism מודרני למצב Ready */
 .ready-glassmorphism {
     position: absolute;
     top: 0;
@@ -1107,9 +1098,7 @@ button:not(:disabled):active {
     }
 }
 
-/* אנימציית הרפלקציה הוסרה לפי בקשת המשתמש */
 
-/* אנימציות חלקות לגלסמורפיזם */
 @keyframes glassFloat1 {
     0% {
         transform: translateY(0px) translateX(0px) scale(1);
@@ -1180,5 +1169,3 @@ button:not(:disabled):active {
         opacity: 0.4;
     }
 }
-
-/* אנימציית gridPulse הוסרה עם הרשת */
