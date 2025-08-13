@@ -28,12 +28,13 @@ const baseConfig = {
         perMachine: false,
         allowToChangeInstallationDirectory: false,
         createDesktopShortcut: true,
-        createStartMenuShortcut: false,
+        createStartMenuShortcut: true,
         // guid: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
         differentialPackage: false,
         allowElevation: false,
         installerIcon: "src/assets/icons/managerAws.ico",
         uninstallerIcon: "src/assets/icons/managerAws.ico",
+        shortcutName: "awsAppManager",
     }
 };
 
@@ -68,7 +69,8 @@ const platformSpecificConfigurations = {
             verifyUpdateCodeSignature: false,
             signAndEditExecutable: false,
             signDlls: false,
-            publisherName: "Avri-Here"
+            publisherName: "Avri-Here",
+            requestedExecutionLevel: "asInvoker"
         },
         compression: "store",
         detectUpdateChannel: true,
