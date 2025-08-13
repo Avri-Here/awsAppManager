@@ -176,12 +176,13 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
                 <CloudRegular className="aws-cloud aws-cloud-10" />
             </div>
             
-            {/* Glassmorphism מינימלי למצב Ready */}
+            {/* Glassmorphism עם כדורי זכוכית למצב Ready */}
             <div className={`ready-clouds ${!isRunning ? 'active' : ''}`}>
                 <div className="ready-glassmorphism">
+                    <div className="glass-orb-1"></div>
+                    <div className="glass-orb-2"></div>
                     <div className="glass-wave"></div>
                 </div>
-                <div className="ready-reflection"></div>
             </div>
             
             <div className="main-status-container">
