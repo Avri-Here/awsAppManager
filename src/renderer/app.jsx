@@ -153,32 +153,13 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
 
     return (
         <div className={styles.mainContent} style={themeStyles.mainContent}>
-            <div className="cloud-background">
-                <CloudRegular className="floating-cloud cloud-1" />
-                <CloudRegular className="floating-cloud cloud-2" />
-                <CloudRegular className="floating-cloud cloud-3" />
-                <CloudRegular className="floating-cloud cloud-4" />
-                <CloudRegular className="floating-cloud cloud-5" />
-            </div>
-
-            <div className={`running-clouds ${isRunning ? 'active' : ''}`}>
-                <CloudRegular className="aws-cloud aws-cloud-1" />
-                <CloudRegular className="aws-cloud aws-cloud-2" />
-                <CloudRegular className="aws-cloud aws-cloud-3" />
-                <CloudRegular className="aws-cloud aws-cloud-4" />
-                <CloudRegular className="aws-cloud aws-cloud-5" />
-                <CloudRegular className="aws-cloud aws-cloud-6" />
-                <CloudRegular className="aws-cloud aws-cloud-7" />
-                <CloudRegular className="aws-cloud aws-cloud-8" />
-                <CloudRegular className="aws-cloud aws-cloud-9" />
-                <CloudRegular className="aws-cloud aws-cloud-10" />
-            </div>
-
-            <div className={`ready-clouds ${!isRunning ? 'active' : ''}`}>
-                <div className="ready-glassmorphism">
-                    <div className="glass-orb-1"></div>
-                    <div className="glass-orb-2"></div>
-                </div>
+            <div className={`glassmorphism-background ${isRunning ? 'running active' : 'ready active'}`}>
+                <div className="glass-orb glass-orb-1"></div>
+                <div className="glass-orb glass-orb-2"></div>
+                <div className="glass-orb glass-orb-3"></div>
+                <div className="glass-orb glass-orb-4"></div>
+                <div className="glass-orb glass-orb-5"></div>
+                <div className="glass-orb glass-orb-6"></div>
             </div>
 
             <div className="main-status-container">
