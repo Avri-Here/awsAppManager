@@ -160,14 +160,23 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
                 <div className="glass-orb glass-orb-4"></div>
                 <div className="glass-orb glass-orb-5"></div>
                 <div className="glass-orb glass-orb-6"></div>
+                <div className="glass-orb glass-orb-7"></div>
+                <div className="glass-orb glass-orb-8"></div>
+                <div className="glass-orb glass-orb-9"></div>
+                <div className="glass-orb glass-orb-10"></div>
+                <div className="glass-orb glass-orb-11"></div>
+                <div className="glass-orb glass-orb-12"></div>
+                <div className="glass-orb glass-orb-13"></div>
+                <div className="glass-orb glass-orb-14"></div>
+                <div className="glass-orb glass-orb-15"></div>
             </div>
 
             <div className="main-status-container">
-                <CloudRegular className="cloud-icon-large" />
+                {/* <CloudRegular className="cloud-icon-large" /> */}
                 <div className="status-indicator-row">
                     <div className={statusDotClass} />
                     <Text size={300} style={{
-                        fontWeight: '600',
+                        fontWeight: '700',
                         color: isDarkMode ? "#ffffff" : "#323130",
                         fontSize: '18px'
                     }}>
@@ -176,6 +185,7 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
                     <div className={statusDotClass} />
                 </div>
             </div>
+
         </div>
     );
 });
@@ -435,8 +445,8 @@ const AwsCredentialManager = () => {
 
 
         container: {
-            background: isDarkMode ? 
-                "linear-gradient(to bottom, #1a2332 0%, #253448 25%, #2f3f50 50%, #1f2937 75%, #0f1a2a 100%)" : 
+            background: isDarkMode ?
+                "linear-gradient(to bottom, #1a2332 0%, #253448 25%, #2f3f50 50%, #1f2937 75%, #0f1a2a 100%)" :
                 "linear-gradient(to bottom, #f0f4f8 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%)",
             color: isDarkMode ? "#ffffff" : "#000000",
         },
