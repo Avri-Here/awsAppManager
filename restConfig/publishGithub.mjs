@@ -19,15 +19,8 @@ const runCommand = (command, args, options = {}) => new Promise((resolve, reject
     });
 });
 
-const getOwnerRepoFromPackage = (pkg) => {
-    try {
-        const url = (pkg?.repository && (pkg.repository.url || pkg.repository)) || "";
-        const match = url.match(/github\.com[:/](?<owner>[^/]+)\/(?<repo>[^/.]+)(?:\.git)?$/i);
-        if (match && match.groups) {
-            return { owner: match.groups.owner, repo: match.groups.repo };
-        }
-    } catch (_) {}
-    // Fallback to known defaults
+const getOwnerRepoFromPackage = () => {
+
     return { owner: "Avri-Here", repo: "awsAppManager" };
 };
 
@@ -86,17 +79,17 @@ const publishDraftRelease = async ({ token, owner, repo, tag, version }) => {
     try {
         log(`Looking for draft releases...`);
         const releases = await githubRequest(token, "GET", `/repos/${owner}/${repo}/releases`);
-        
+
         // Find draft release that matches our version
         const draftRelease = releases.find(r => r.draft && (
-            r.name === version || 
+            r.name === version ||
             r.name === tag ||
             r.tag_name === tag
         ));
-        
+
         if (draftRelease) {
             log(`Found draft release: id=${draftRelease.id}, name="${draftRelease.name}", tag="${draftRelease.tag_name}"`);
-            
+
             // Update the release to have the correct tag and publish it
             await githubRequest(token, "PATCH", `/repos/${owner}/${repo}/releases/${draftRelease.id}`, {
                 tag_name: tag,
@@ -117,7 +110,7 @@ const main = async () => {
     const version = pkg?.version?.trim();
     if (!version) throw new Error("Could not read version from package.json");
 
-    const { owner, repo } = getOwnerRepoFromPackage(pkg);
+    const { owner, repo } = getOwnerRepoFromPackage();
     const token = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
     if (!token) {
         throw new Error("Missing GH_TOKEN (or GITHUB_TOKEN) environment variable with 'repo' scope");
