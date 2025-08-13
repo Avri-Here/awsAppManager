@@ -2,11 +2,8 @@
 
 import { join } from "path";
 import { homedir } from "os";
-import { promisify } from "util";
 import { unlink } from "fs/promises";
-import { exec } from "child_process";
 import { parse, stringify } from "ini";
-import { parseString, Builder } from "xml2js";
 import { writeFileSync, readFileSync, existsSync, renameSync } from "fs";
 
 
@@ -55,49 +52,50 @@ export const updateCredentialsFile = (profile, credentials, config) => {
     }
 };
 
-export const updateMavenSettings = async (authToken) => {
+export const updateMavenSettings = (authToken) => {
     const settingsPath = join(homedir(), '.m2', 'settings.xml');
 
     if (!existsSync(settingsPath)) {
         throw new Error("Maven settings.xml not found, skipping Maven configuration.");
     }
 
-    const settingsContent = readFileSync(settingsPath, 'utf-8');
-    const parseXml = promisify(parseString);
+    let settingsContent = readFileSync(settingsPath, 'utf-8');
+    const serverIds = ['cxone-codeartifact', 'platform-utils', 'plugins-codeartifact'];
 
-    const result = await parseXml(settingsContent);
+    let updated = false;
 
-    if (result.settings?.servers?.[0]?.server) {
-        const servers = result.settings.servers[0].server;
-        const serverIds = ['cxone-codeartifact', 'platform-utils', 'plugins-codeartifact'];
+    serverIds.forEach(serverId => {
+        const serverRegex = new RegExp(
+            `(<server>\\s*<id>${serverId}</id>\\s*<username>.*?</username>\\s*<password>)([^<]*)(</password>\\s*</server>)`,
+            'gis'
+        );
 
-        let updated = false;
-        servers.forEach((server) => {
-            if (server.id && serverIds.includes(server.id[0])) {
-                server.password = [authToken];
-                updated = true;
-            }
-        });
-
-        if (updated) {
-            const builder = new Builder();
-            const xml = builder.buildObject(result);
-            writeFileSync(settingsPath, xml);
-        } else {
-            throw new Error("No matching server configurations found in Maven settings.xml.");
+        const match = settingsContent.match(serverRegex);
+        if (match) {
+            settingsContent = settingsContent.replace(serverRegex, `$1${authToken}$3`);
+            updated = true;
         }
+    });
+
+    if (updated) {
+        writeFileSync(settingsPath, settingsContent);
+    } else {
+        console.log("No matching server configurations found in Maven settings.xml.");
+        return;
     }
 };
 
-export const updateNpmConfig = async (authToken) => {
+export const updateNpmConfig = (authToken) => {
 
-    const execAsync = promisify(exec);
     const registry = 'https://nice-devops-369498121101.d.codeartifact.us-west-2.amazonaws.com/npm/cxone-npm/';
     const authTokenKey = '//nice-devops-369498121101.d.codeartifact.us-west-2.amazonaws.com/npm/cxone-npm/:_authToken';
 
-    await execAsync(`npm config set registry "${registry}"`);
-    await execAsync(`npm config set "${authTokenKey}" "${authToken}"`);
+    const npmrcContent = `registry=${registry}\n${authTokenKey}=${authToken}\n`;
+    const npmrcPath = join(homedir(), '.npmrc');
+
+    writeFileSync(npmrcPath, npmrcContent);
 };
+
 
 export const removeNpmConfig = async () => {
 

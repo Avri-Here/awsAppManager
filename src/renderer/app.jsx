@@ -650,7 +650,7 @@ const AwsCredentialManager = () => {
                 if (settings.enableXmlUpdate) {
 
                     if (abortController.signal.aborted) return;
-                    await ipcRenderer.invoke("updateXmlConfiguration", codeArtifactResult.authToken);
+                    ipcRenderer.send("updateXmlConfiguration", codeArtifactResult.authToken);
                     console.log("Updated Maven settings.xml with CodeArtifact token ..");
 
                 }
@@ -659,7 +659,7 @@ const AwsCredentialManager = () => {
                 if (settings.enableNpmUpdate) {
 
                     if (abortController.signal.aborted) return;
-                    await ipcRenderer.invoke("updateNpmConfiguration", codeArtifactResult.authToken);
+                    ipcRenderer.send("updateNpmConfiguration", codeArtifactResult.authToken);
                     console.log("Updated npm config ( .npmrc file ) with CodeArtifact token ..");
                 }
             };
