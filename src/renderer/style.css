@@ -752,6 +752,94 @@ button:not(:disabled):active {
     opacity: 1;
 }
 
+/* רקע glassmorphism מודרני למצב Ready */
+.ready-glassmorphism {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.glass-orb-1 {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(0, 120, 212, 0.08) 40%, 
+        transparent 70%);
+    border-radius: 50%;
+    backdrop-filter: blur(20px);
+    animation: glassFloat1 18s ease-in-out infinite;
+    filter: drop-shadow(0 8px 32px rgba(0, 120, 212, 0.1));
+}
+
+.glass-orb-2 {
+    position: absolute;
+    top: 60%;
+    right: 15%;
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle at 70% 70%, 
+        rgba(255, 255, 255, 0.12) 0%, 
+        rgba(0, 120, 212, 0.06) 35%, 
+        transparent 65%);
+    border-radius: 50%;
+    backdrop-filter: blur(15px);
+    animation: glassFloat2 22s ease-in-out infinite;
+    filter: drop-shadow(0 6px 24px rgba(0, 120, 212, 0.08));
+}
+
+.glass-polygon {
+    position: absolute;
+    top: 35%;
+    right: 25%;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(0, 120, 212, 0.05) 50%, 
+        transparent 100%);
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    backdrop-filter: blur(12px);
+    animation: glassRotate 25s linear infinite;
+    filter: drop-shadow(0 4px 16px rgba(0, 120, 212, 0.06));
+}
+
+.glass-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.03) 50%, 
+        rgba(0, 120, 212, 0.05) 100%);
+    backdrop-filter: blur(25px);
+    animation: glassWave 20s ease-in-out infinite;
+    transform-origin: bottom;
+}
+
+.glass-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: gridPulse 30s ease-in-out infinite;
+}
+
 /* עיצוב Reflection Loop יוקרתי למצב Ready */
 .ready-reflection {
     position: absolute;
@@ -1136,5 +1224,121 @@ button:not(:disabled):active {
     100% {
         opacity: 0;
         transform: rotate(-45deg) translateX(-200px) scale(0.8);
+    }
+}
+
+/* אנימציות חלקות לגלסמורפיזם */
+@keyframes glassFloat1 {
+    0% {
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 0.8;
+    }
+    
+    25% {
+        transform: translateY(-15px) translateX(10px) scale(1.05);
+        opacity: 1;
+    }
+    
+    50% {
+        transform: translateY(-8px) translateX(-5px) scale(0.95);
+        opacity: 0.9;
+    }
+    
+    75% {
+        transform: translateY(12px) translateX(8px) scale(1.02);
+        opacity: 0.85;
+    }
+    
+    100% {
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes glassFloat2 {
+    0% {
+        transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
+        opacity: 0.7;
+    }
+    
+    30% {
+        transform: translateY(18px) translateX(-12px) scale(1.08) rotate(5deg);
+        opacity: 0.9;
+    }
+    
+    60% {
+        transform: translateY(-10px) translateX(15px) scale(0.92) rotate(-3deg);
+        opacity: 0.75;
+    }
+    
+    100% {
+        transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
+        opacity: 0.7;
+    }
+}
+
+@keyframes glassRotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.6;
+    }
+    
+    25% {
+        transform: rotate(90deg) scale(1.1);
+        opacity: 0.8;
+    }
+    
+    50% {
+        transform: rotate(180deg) scale(0.9);
+        opacity: 0.7;
+    }
+    
+    75% {
+        transform: rotate(270deg) scale(1.05);
+        opacity: 0.9;
+    }
+    
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 0.6;
+    }
+}
+
+@keyframes glassWave {
+    0% {
+        transform: scaleY(1) translateY(0px);
+        opacity: 0.4;
+    }
+    
+    33% {
+        transform: scaleY(1.1) translateY(-10px);
+        opacity: 0.6;
+    }
+    
+    66% {
+        transform: scaleY(0.9) translateY(5px);
+        opacity: 0.5;
+    }
+    
+    100% {
+        transform: scaleY(1) translateY(0px);
+        opacity: 0.4;
+    }
+}
+
+@keyframes gridPulse {
+    0% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    
+    50% {
+        opacity: 0.6;
+        transform: scale(1.02);
+    }
+    
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
     }
 }
