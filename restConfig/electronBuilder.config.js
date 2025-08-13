@@ -68,6 +68,7 @@ const platformSpecificConfigurations = {
             signDlls: false,
             publisherName: "Avri-Here"
         },
+        icon: "src/assets/icons/managerAws.ico",
         compression: "store",
         detectUpdateChannel: true,
         nodeGypRebuild: false,
