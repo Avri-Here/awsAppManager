@@ -25,7 +25,7 @@ const baseConfig = {
     },
     nsis: {
         oneClick: false,
-        perMachine: true,
+        perMachine: false,
         allowToChangeInstallationDirectory: false,
         createDesktopShortcut: true,
         createStartMenuShortcut: false,
