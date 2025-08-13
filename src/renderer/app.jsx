@@ -172,6 +172,14 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
                 <CloudRegular className="aws-cloud aws-cloud-6" />
             </div>
             
+            {/* עננים עדינים למצב Ready */}
+            <div className={`ready-clouds ${!isRunning ? 'active' : ''}`}>
+                <CloudRegular className="ready-cloud ready-cloud-1" />
+                <CloudRegular className="ready-cloud ready-cloud-2" />
+                <CloudRegular className="ready-cloud ready-cloud-3" />
+                <CloudRegular className="ready-cloud ready-cloud-4" />
+            </div>
+            
             <div className="main-status-container">
                 <CloudRegular className="cloud-icon-large" />
                 <div className="status-indicator-row">
@@ -446,8 +454,8 @@ const AwsCredentialManager = () => {
 
         container: {
             background: isDarkMode ? 
-                "linear-gradient(to bottom, #0a0f1c 0%, #162436 25%, #1f2937 50%, #0f172a 75%, #020617 100%)" : 
-                "linear-gradient(to bottom, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%)",
+                "linear-gradient(to bottom, #1a2332 0%, #253448 25%, #2f3f50 50%, #1f2937 75%, #0f1a2a 100%)" : 
+                "linear-gradient(to bottom, #f0f4f8 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%)",
             color: isDarkMode ? "#ffffff" : "#000000",
         },
         header: {

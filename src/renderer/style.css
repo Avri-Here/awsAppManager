@@ -239,19 +239,19 @@ button:not(:disabled):active {
     animation: shimmer 2s infinite;
 }
 
-.glass {
-    /* backdrop-filter: blur(20px); */
-    /* background: rgba(255, 255, 255, 0.1); */
-    /* border: 1px solid rgba(255, 255, 255, 0.2); */
-    /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); */
+/* .glass {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .glass-dark {
-    /* backdrop-filter: blur(20px); */
-    /* background: rgba(0, 0, 0, 0.2); */
-    /* border: 1px solid rgba(255, 255, 255, 0.1); */
-    /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); */
-}
+    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+} */
 
 .hover-lift {
     transition: all 0.2s ease;
@@ -734,6 +734,65 @@ button:not(:disabled):active {
     opacity: 1;
 }
 
+/* עננים עדינים למצב Ready */
+.ready-clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+}
+
+.ready-clouds.active {
+    opacity: 1;
+}
+
+.ready-cloud {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.06);
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    will-change: transform;
+    filter: blur(0.3px);
+}
+
+.ready-cloud-1 {
+    font-size: 40px;
+    top: 20%;
+    left: -55px;
+    animation: readyFloat1 40s ease-in-out infinite;
+    animation-delay: 0s;
+}
+
+.ready-cloud-2 {
+    font-size: 30px;
+    top: 40%;
+    left: -45px;
+    animation: readyFloat2 45s ease-in-out infinite;
+    animation-delay: -8s;
+}
+
+.ready-cloud-3 {
+    font-size: 50px;
+    top: 60%;
+    left: -65px;
+    animation: readyFloat3 42s ease-in-out infinite;
+    animation-delay: -15s;
+}
+
+.ready-cloud-4 {
+    font-size: 35px;
+    top: 80%;
+    left: -50px;
+    animation: readyFloat4 48s ease-in-out infinite;
+    animation-delay: -12s;
+}
+
 .aws-cloud {
     position: absolute;
     color: rgba(0, 120, 212, 0.08);
@@ -905,5 +964,86 @@ button:not(:disabled):active {
 
     100% {
         transform: translateX(calc(100vw + 78px)) translateY(0) scale(0.99);
+    }
+}
+
+/* אנימציות עדינות למצב Ready */
+@keyframes readyFloat1 {
+    0% {
+        transform: translateX(0) translateY(0) scale(1);
+    }
+
+    25% {
+        transform: translateX(25vw) translateY(-4px) scale(1.01);
+    }
+
+    50% {
+        transform: translateX(50vw) translateY(2px) scale(0.99);
+    }
+
+    75% {
+        transform: translateX(75vw) translateY(-3px) scale(1.005);
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 70px)) translateY(0) scale(1);
+    }
+}
+
+@keyframes readyFloat2 {
+    0% {
+        transform: translateX(0) translateY(0) scale(0.98);
+    }
+
+    30% {
+        transform: translateX(30vw) translateY(3px) scale(1.02);
+    }
+
+    60% {
+        transform: translateX(60vw) translateY(-5px) scale(0.97);
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 60px)) translateY(0) scale(0.98);
+    }
+}
+
+@keyframes readyFloat3 {
+    0% {
+        transform: translateX(0) translateY(0) scale(1.01);
+    }
+
+    20% {
+        transform: translateX(20vw) translateY(2px) scale(0.96);
+    }
+
+    50% {
+        transform: translateX(50vw) translateY(-6px) scale(1.03);
+    }
+
+    80% {
+        transform: translateX(80vw) translateY(1px) scale(0.99);
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 80px)) translateY(0) scale(1.01);
+    }
+}
+
+@keyframes readyFloat4 {
+    0% {
+        transform: translateX(0) translateY(0) scale(0.99);
+    }
+
+    40% {
+        transform: translateX(40vw) translateY(-3px) scale(1.01);
+    }
+
+    70% {
+        transform: translateX(70vw) translateY(4px) scale(0.96);
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 65px)) translateY(0) scale(0.99);
     }
 }
