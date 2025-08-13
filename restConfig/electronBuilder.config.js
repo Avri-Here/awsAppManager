@@ -29,8 +29,9 @@ const baseConfig = {
         allowToChangeInstallationDirectory: false,
         createDesktopShortcut: true,
         createStartMenuShortcut: false,
-        guid: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
-        differentialPackage: false
+        // guid: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
+        differentialPackage: false,
+        allowElevation: false,
     }
 };
 
@@ -63,13 +64,14 @@ const platformSpecificConfigurations = {
             }],
             legalTrademarks: "Avri © 2025",
             verifyUpdateCodeSignature: false,
-            // requestedExecutionLevel: "asInvoker",
             signAndEditExecutable: false,
             signDlls: false,
             publisherName: "Avri-Here"
         },
-        compression: "normal",
+        compression: "store",
         detectUpdateChannel: true,
+        nodeGypRebuild: false,
+        buildDependenciesFromSource: false,
     },
     linux: {
         ...baseConfig,
