@@ -153,7 +153,6 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
 
     return (
         <div className={styles.mainContent} style={themeStyles.mainContent}>
-            {/* רקע עננים נעים */}
             <div className="cloud-background">
                 <CloudRegular className="floating-cloud cloud-1" />
                 <CloudRegular className="floating-cloud cloud-2" />
@@ -161,8 +160,7 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
                 <CloudRegular className="floating-cloud cloud-4" />
                 <CloudRegular className="floating-cloud cloud-5" />
             </div>
-            
-            {/* עננים נוספים שמופיעים רק כשהאפליקציה רצה */}
+
             <div className={`running-clouds ${isRunning ? 'active' : ''}`}>
                 <CloudRegular className="aws-cloud aws-cloud-1" />
                 <CloudRegular className="aws-cloud aws-cloud-2" />
@@ -175,16 +173,14 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
                 <CloudRegular className="aws-cloud aws-cloud-9" />
                 <CloudRegular className="aws-cloud aws-cloud-10" />
             </div>
-            
-            {/* Glassmorphism עם כדורי זכוכית למצב Ready */}
+
             <div className={`ready-clouds ${!isRunning ? 'active' : ''}`}>
                 <div className="ready-glassmorphism">
                     <div className="glass-orb-1"></div>
                     <div className="glass-orb-2"></div>
-                    <div className="glass-wave"></div>
                 </div>
             </div>
-            
+
             <div className="main-status-container">
                 <CloudRegular className="cloud-icon-large" />
                 <div className="status-indicator-row">
@@ -263,7 +259,7 @@ const useStyles = makeStyles({
         justifyContent: "space-between",
         padding: "0 25px",
         borderTop: "1px solid transparent",
-        backdropFilter: "blur(20px)",
+        backdropFilter: "blur(10px)",
         position: "relative",
     },
 
@@ -467,7 +463,7 @@ const AwsCredentialManager = () => {
             // backgroundColor: isDarkMode ? "rgba(37, 37, 38, 0.95)" : "rgba(248, 248, 248, 0.95)",
             // borderBottomColor: isDarkMode ? "#3c3c3c" : "#e1dfdd",
             // boxShadow: isDarkMode ? "0 1px 3px rgba(0, 0, 0, 0.3)" : "0 1px 3px rgba(0, 0, 0, 0.1)",
-            
+
         },
         mainContent: {
             backgroundColor: "transparent",
@@ -760,7 +756,7 @@ const AwsCredentialManager = () => {
                     isDarkMode={isDarkMode}
                 />
 
-                <div className={styles.statusBar} style={themeStyles.statusBar}>
+                <div className={`${styles.statusBar} status-bar-container`} style={themeStyles.statusBar}>
                     <div className={styles.statusLeft}>
                         <div className="dropdown-container">
 

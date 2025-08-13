@@ -722,7 +722,7 @@ button:not(:disabled):active {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 65px);
     overflow: hidden;
     z-index: 1;
     pointer-events: none;
@@ -740,7 +740,7 @@ button:not(:disabled):active {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 65px);
     overflow: hidden;
     z-index: 1;
     pointer-events: none;
@@ -794,21 +794,6 @@ button:not(:disabled):active {
     backdrop-filter: blur(15px);
     animation: glassFloat2 22s ease-in-out infinite;
     filter: drop-shadow(0 6px 24px rgba(0, 120, 212, 0.08));
-}
-
-.glass-wave {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 200px;
-    background: linear-gradient(180deg,
-            transparent 0%,
-            rgba(255, 255, 255, 0.03) 50%,
-            rgba(0, 120, 212, 0.05) 100%);
-    backdrop-filter: blur(25px);
-    animation: glassWave 20s ease-in-out infinite;
-    transform-origin: bottom;
 }
 
 .aws-cloud {
