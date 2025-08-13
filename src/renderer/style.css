@@ -787,8 +787,36 @@ button:not(:disabled):active {
     }
 }
 
-/* חלקיקי פיצוץ עדינים בסגנון Bubble Pop */
-.explosion-particle {
+/* אפקט פיצוץ חלק כמו בקוד המקורי */
+.orb-explosion {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.orb-explosion .explosion-particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: pop 1s reverse forwards;
+}
+
+@keyframes pop {
+    from {
+        opacity: 0;
+    }
+    to {
+        top: 50%;
+        left: 50%;
+        opacity: 1;
+    }
+}
+
+/* חלקיקי פיצוץ עדינים בסגנון חדש */
+.simple-explosion-particle {
     position: fixed;
     width: 6px;
     height: 6px;
@@ -831,7 +859,7 @@ button:not(:disabled):active {
         transform: scale(0) 
                   translateX(calc(cos(var(--angle)) * var(--distance))) 
                   translateY(calc(sin(var(--angle)) * var(--distance)));
-    opacity: 0;
+        opacity: 0;
         filter: brightness(0.3) saturate(0.5);
     }
 }

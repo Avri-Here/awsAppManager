@@ -199,35 +199,59 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
         }, 120);
     };
 
-    // יצירת חלקיקי פיצוץ דינמיים
+    // פונקציה לקבלת מספר אקראי בין min ל-max
+    const rand = (min, max) => {
+        return Math.floor(Math.random() * (max + 1)) + min;
+    };
+
+    // יצירת אפקט פיצוץ חלק כמו בקוד המקורי
     const createExplosionParticles = (orbElement) => {
         const rect = orbElement.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
         
-        // יצירת 8 חלקיקים עדינים בכיוונים שונים
-        for (let i = 0; i < 8; i++) {
+        const particles = 15;
+        
+        // יצירת מכולה לפיצוץ
+        const explosion = document.createElement('div');
+        explosion.className = 'orb-explosion';
+        
+        // מיקום המכולה במרכז הכדור
+        explosion.style.left = `${centerX - 300}px`; // מחצית מ-600px
+        explosion.style.top = `${centerY - 300}px`;
+        
+        document.body.appendChild(explosion);
+        
+        for (let i = 0; i < particles; i++) {
+            // חישוב מיקום החלקיק על מעגל עם רדיוס מעט אקראי - בדיוק כמו בקוד המקורי
+            const x = explosion.offsetWidth / 2 + 
+                     rand(80, 150) * Math.cos((2 * Math.PI * i) / rand(particles - 10, particles + 10));
+            const y = explosion.offsetHeight / 2 + 
+                     rand(80, 150) * Math.sin((2 * Math.PI * i) / rand(particles - 10, particles + 10));
+            
+            // צבעים כחולים תכלת אקראיים פשוטים
+            const r = rand(0, 100);
+            const g = rand(150, 255);
+            const b = 255;
+            const color = `rgb(${r}, ${g}, ${b})`;
+            
+            // יצירת חלקיק פשוט
             const particle = document.createElement('div');
             particle.className = 'explosion-particle';
+            particle.style.backgroundColor = color;
+            particle.style.top = `${y}px`;
+            particle.style.left = `${x}px`;
             
-            // זווית אקראית עדינה יותר
-            const angle = (360 / 8) * i + Math.random() * 20;
-            const distance = 60 + Math.random() * 30;
+            if (i === 0) {
+                // הסרת המכולה כשהאנימציה מסתיימת - בדיוק כמו בקוד המקורי
+                particle.addEventListener('animationend', () => {
+                    if (explosion.parentNode) {
+                        explosion.parentNode.removeChild(explosion);
+                    }
+                });
+            }
             
-            // מיקום ראשוני
-            particle.style.left = `${centerX}px`;
-            particle.style.top = `${centerY}px`;
-            particle.style.setProperty('--angle', `${angle}deg`);
-            particle.style.setProperty('--distance', `${distance}px`);
-            
-            document.body.appendChild(particle);
-            
-            // הסרת החלקיק אחרי האנימציה העדינה
-            setTimeout(() => {
-                if (particle.parentNode) {
-                    particle.parentNode.removeChild(particle);
-                }
-            }, 800);
+            explosion.appendChild(particle);
         }
     };
 
@@ -254,7 +278,7 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
                         key={num}
                         className={`glass-orb glass-orb-${num}`}
                         onClick={handleOrbClick}
-                        title="לחץ לפיצוץ עדין! 🫧"
+                        title="לחץ לפיצוץ חלק! 💙"
                     />
                 ))}
             </div>
