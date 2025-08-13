@@ -26,3 +26,4 @@ coverage
 *.sw?
 package-lock.json
 justRunItTool
+Graphics

@@ -25,8 +25,29 @@ const baseConfig = {
     },
     nsis: {
         differentialPackage: true,
-        deleteAppDataOnUninstall: false
-    },
+        deleteAppDataOnUninstall: false,
+        // oneClick: false,
+        // allowToChangeInstallationDirectory: false,
+        // allowElevation: false,
+        // createDesktopShortcut: false,
+        // createStartMenuShortcut: false,
+        // runAfterFinish: false,       
+        // shortcutName: "awsAppManager",
+        // installerSidebar: "build/Graphics/Wizard/nsis3-metro.bmp",
+        // perMachine: false,
+        // menuCategory: false,
+        // include: "build/installer.nsh",
+        // installerHeaderIcon: "build/Graphics/Icons/modern-install-blue.ico",
+        // installerHeader: "build/Graphics/Header/nsis3-metro.bmp",
+        // uninstallerIcon: "build/Graphics/Icons/modern-uninstall-blue.ico",
+        // guid: "com.avri.awsAppManager",
+        // language: "1033",
+        // multiLanguageInstaller: false,
+        // packElevateHelper: false,
+        // removeDefaultUninstallWelcomePage: false,
+        // warningsAsErrors: false,
+        // displayLanguageSelector: false,
+    }
 };
 
 
@@ -99,45 +120,3 @@ module.exports = platformSpecificConfigurations[process.platform];
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Portable .Exe !
-// const desktopPath = process.env.USERPROFILE ? `${process.env.USERPROFILE}\\Desktop` : "release";
-
-// const portableConfig = {
-//     ...baseConfig,
-//     directories: {
-//         ...baseConfig.directories,
-//         output: `${desktopPath}\\aws-build-temp`,
-//     },
-//     win: {
-//         icon: "src/assets/icons/managerAws.ico",
-//         target: [{
-//             target: "portable",
-//             arch: ["x64"]
-//         }],
-//     },
-//     portable: {
-//         artifactName: "${productName}-portable.${ext}",
-//     },
-// };
-
-// module.exports = process.env.PORTABLE ? portableConfig : platformSpecificConfigurations[process.platform];
-
-
-// "scripts": {
-//     "buildExeOnly": "npm run build && set PORTABLE=true && electron-builder --config restConfig/electronBuilder.config.js --publish=never"
-// }

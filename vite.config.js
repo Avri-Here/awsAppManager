@@ -42,7 +42,7 @@ export default defineConfig(({ command }) => {
     const isBuild = command === "build";
     const sourcemap = isServe || process.argv.includes("--sourcemap");
     
-    if (!isServe) {
+    if (!isServe && isBuild) {
         dirsToClean.forEach(dir => {
             try {
                 rmSync(join(__dirname, dir), { recursive: true, force: true });
