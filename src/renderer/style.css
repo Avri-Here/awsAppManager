@@ -645,3 +645,123 @@ button:not(:disabled):active {
     animation-iteration-count: infinite;
     will-change: transform;
 }
+
+/* עננים נוספים שמופיעים רק כשהאפליקציה רצה */
+.running-clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.running-clouds.active {
+    opacity: 1;
+}
+
+.aws-cloud {
+    position: absolute;
+    color: rgba(0, 120, 212, 0.08);
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    will-change: transform;
+    filter: blur(0.5px);
+}
+
+.aws-cloud-1 {
+    font-size: 45px;
+    top: 15%;
+    left: -60px;
+    animation: awsFloat1 25s ease-in-out infinite;
+    animation-delay: 0s;
+}
+
+.aws-cloud-2 {
+    font-size: 35px;
+    top: 35%;
+    left: -50px;
+    animation: awsFloat2 30s ease-in-out infinite;
+    animation-delay: -5s;
+}
+
+.aws-cloud-3 {
+    font-size: 55px;
+    top: 55%;
+    left: -70px;
+    animation: awsFloat3 28s ease-in-out infinite;
+    animation-delay: -12s;
+}
+
+.aws-cloud-4 {
+    font-size: 40px;
+    top: 75%;
+    left: -55px;
+    animation: awsFloat4 32s ease-in-out infinite;
+    animation-delay: -8s;
+}
+
+.aws-cloud-5 {
+    font-size: 48px;
+    top: 8%;
+    left: -65px;
+    animation: awsFloat5 27s ease-in-out infinite;
+    animation-delay: -15s;
+}
+
+.aws-cloud-6 {
+    font-size: 38px;
+    top: 45%;
+    left: -52px;
+    animation: awsFloat6 29s ease-in-out infinite;
+    animation-delay: -3s;
+}
+
+/* אנימציות AWS מתקדמות עם תנועה עדינה */
+@keyframes awsFloat1 {
+    0% { transform: translateX(0) translateY(0) scale(1); }
+    25% { transform: translateX(30vw) translateY(-8px) scale(1.05); }
+    50% { transform: translateX(60vw) translateY(4px) scale(0.98); }
+    75% { transform: translateX(90vw) translateY(-6px) scale(1.02); }
+    100% { transform: translateX(calc(100vw + 80px)) translateY(0) scale(1); }
+}
+
+@keyframes awsFloat2 {
+    0% { transform: translateX(0) translateY(0) scale(0.95); }
+    30% { transform: translateX(35vw) translateY(6px) scale(1.03); }
+    60% { transform: translateX(70vw) translateY(-10px) scale(0.97); }
+    100% { transform: translateX(calc(100vw + 70px)) translateY(0) scale(0.95); }
+}
+
+@keyframes awsFloat3 {
+    0% { transform: translateX(0) translateY(0) scale(1.02); }
+    20% { transform: translateX(25vw) translateY(5px) scale(0.96); }
+    50% { transform: translateX(55vw) translateY(-12px) scale(1.04); }
+    80% { transform: translateX(85vw) translateY(3px) scale(0.99); }
+    100% { transform: translateX(calc(100vw + 90px)) translateY(0) scale(1.02); }
+}
+
+@keyframes awsFloat4 {
+    0% { transform: translateX(0) translateY(0) scale(0.98); }
+    40% { transform: translateX(40vw) translateY(-7px) scale(1.01); }
+    70% { transform: translateX(75vw) translateY(8px) scale(0.95); }
+    100% { transform: translateX(calc(100vw + 75px)) translateY(0) scale(0.98); }
+}
+
+@keyframes awsFloat5 {
+    0% { transform: translateX(0) translateY(0) scale(1.01); }
+    35% { transform: translateX(38vw) translateY(9px) scale(0.97); }
+    65% { transform: translateX(68vw) translateY(-5px) scale(1.03); }
+    100% { transform: translateX(calc(100vw + 85px)) translateY(0) scale(1.01); }
+}
+
+@keyframes awsFloat6 {
+    0% { transform: translateX(0) translateY(0) scale(0.99); }
+    45% { transform: translateX(45vw) translateY(-9px) scale(1.02); }
+    75% { transform: translateX(78vw) translateY(6px) scale(0.96); }
+    100% { transform: translateX(calc(100vw + 78px)) translateY(0) scale(0.99); }
+}

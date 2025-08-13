@@ -162,6 +162,16 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
                 <CloudRegular className="floating-cloud cloud-5" />
             </div>
             
+            {/* עננים נוספים שמופיעים רק כשהאפליקציה רצה */}
+            <div className={`running-clouds ${isRunning ? 'active' : ''}`}>
+                <CloudRegular className="aws-cloud aws-cloud-1" />
+                <CloudRegular className="aws-cloud aws-cloud-2" />
+                <CloudRegular className="aws-cloud aws-cloud-3" />
+                <CloudRegular className="aws-cloud aws-cloud-4" />
+                <CloudRegular className="aws-cloud aws-cloud-5" />
+                <CloudRegular className="aws-cloud aws-cloud-6" />
+            </div>
+            
             <div className="main-status-container">
                 <CloudRegular className="cloud-icon-large" />
                 <div className="status-indicator-row">
