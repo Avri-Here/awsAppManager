@@ -151,24 +151,112 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
         return isRunning ? styles.statusDotRunning : styles.statusDotReady;
     }, [isRunning, styles.statusDotRunning, styles.statusDotReady]);
 
+    // פונקציה להפקת מיקום אקראי בטווח הבטוח
+    const getRandomPosition = () => {
+        const minTop = 12;
+        const maxTop = 78;
+        const minLeft = 6;
+        const maxLeft = 85;
+        
+        return {
+            top: Math.random() * (maxTop - minTop) + minTop,
+            left: Math.random() * (maxLeft - minLeft) + minLeft
+        };
+    };
+
+    // אפקט פיצוץ עדין בסגנון Bubble Pop
+    const handleExplodeEffect = (orbElement) => {
+        // שלב 1: הכנה לפיצוץ - Juicy Squeeze
+        orbElement.classList.add('pre-explode');
+        
+        setTimeout(() => {
+            orbElement.classList.remove('pre-explode');
+            
+            // שלב 2: פיצוץ עדין עם חלקיקים כחולים
+            orbElement.classList.add('mega-exploding');
+            
+            // יצירת חלקיקי פיצוץ עדינים
+            createExplosionParticles(orbElement);
+            
+            setTimeout(() => {
+                // שלב 3: ניקוי והתחדשות
+                orbElement.style.opacity = '0';
+                orbElement.classList.remove('mega-exploding');
+                
+                setTimeout(() => {
+                    // שלב 4: מיקום חדש ואפקט התחדשות עדין
+                    const newPosition = getRandomPosition();
+                    orbElement.style.top = `${newPosition.top}%`;
+                    orbElement.style.left = `${newPosition.left}%`;
+                    orbElement.style.opacity = '1';
+                    orbElement.classList.add('epic-regenerating');
+                    
+                    setTimeout(() => {
+                        orbElement.classList.remove('epic-regenerating');
+                    }, 700);
+                }, 150);
+            }, 600);
+        }, 120);
+    };
+
+    // יצירת חלקיקי פיצוץ דינמיים
+    const createExplosionParticles = (orbElement) => {
+        const rect = orbElement.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        // יצירת 8 חלקיקים עדינים בכיוונים שונים
+        for (let i = 0; i < 8; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'explosion-particle';
+            
+            // זווית אקראית עדינה יותר
+            const angle = (360 / 8) * i + Math.random() * 20;
+            const distance = 60 + Math.random() * 30;
+            
+            // מיקום ראשוני
+            particle.style.left = `${centerX}px`;
+            particle.style.top = `${centerY}px`;
+            particle.style.setProperty('--angle', `${angle}deg`);
+            particle.style.setProperty('--distance', `${distance}px`);
+            
+            document.body.appendChild(particle);
+            
+            // הסרת החלקיק אחרי האנימציה העדינה
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 800);
+        }
+    };
+
+    // טיפול בלחיצה על כדור
+    const handleOrbClick = (event) => {
+        event.stopPropagation();
+        const orbElement = event.currentTarget;
+        
+        // בדיקה שהכדור לא כבר באמצע אפקט
+        if (orbElement.classList.contains('pre-explode') ||
+            orbElement.classList.contains('mega-exploding') || 
+            orbElement.classList.contains('epic-regenerating')) {
+            return;
+        }
+
+        handleExplodeEffect(orbElement);
+    };
+
     return (
         <div className={styles.mainContent} style={themeStyles.mainContent}>
             <div className={`glassmorphism-background ${isRunning ? 'running active' : 'ready active'}`}>
-                <div className="glass-orb glass-orb-1"></div>
-                <div className="glass-orb glass-orb-2"></div>
-                <div className="glass-orb glass-orb-3"></div>
-                <div className="glass-orb glass-orb-4"></div>
-                <div className="glass-orb glass-orb-5"></div>
-                <div className="glass-orb glass-orb-6"></div>
-                <div className="glass-orb glass-orb-7"></div>
-                <div className="glass-orb glass-orb-8"></div>
-                <div className="glass-orb glass-orb-9"></div>
-                <div className="glass-orb glass-orb-10"></div>
-                <div className="glass-orb glass-orb-11"></div>
-                <div className="glass-orb glass-orb-12"></div>
-                <div className="glass-orb glass-orb-13"></div>
-                <div className="glass-orb glass-orb-14"></div>
-                <div className="glass-orb glass-orb-15"></div>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(num => (
+                    <div 
+                        key={num}
+                        className={`glass-orb glass-orb-${num}`}
+                        onClick={handleOrbClick}
+                        title="לחץ לפיצוץ עדין! 🫧"
+                    />
+                ))}
             </div>
 
             <div className="main-status-container">
