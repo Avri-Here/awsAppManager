@@ -345,6 +345,7 @@ const AwsCredentialManager = () => {
     const [canGenerateMfa, setCanGenerateMfa] = useState(true);
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const [mfaTimeRemaining, setMfaTimeRemaining] = useState(0);
+    const [showVersionAlert, setShowVersionAlert] = useState(false);
     const [selectedAccount, setSelectedAccount] = useState({ name: '', accountId: '' });
 
 
@@ -380,6 +381,10 @@ const AwsCredentialManager = () => {
     }, []);
 
     useEffect(() => {
+
+        setShowVersionAlert(true);
+        localStorage.setItem('hasSeenV1Alert', 'true');
+
 
         // Cleanup any running processes when the component unmounts form any reason ..
         return () => {
@@ -1051,6 +1056,35 @@ const AwsCredentialManager = () => {
                                 }}>
                                     ✓  Settings are saved automatically ✓
                                 </div>
+                            </DialogContent>
+                        </DialogBody>
+                    </DialogSurface>
+                </Dialog>
+
+                <Dialog open={showVersionAlert} onOpenChange={(_, { open }) => setShowVersionAlert(open)}>
+                    <DialogSurface style={{
+                        maxWidth: '400px',
+                        height: '125px',
+                        borderRadius: '12px',
+                        background: isDarkMode
+                            ? 'linear-gradient(135deg, #1e1e1e 0%, #2d2d30 100%)'
+                            : 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
+                        border: isDarkMode ? '1px solid #0078d4' : '1px solid #0078d4',
+                        boxShadow: '0 2px 32px rgba(0, 120, 212, 0.3)',
+                    }}>
+                        <DialogBody style={{ padding: '12px' }}>
+                            <DialogContent style={{ textAlign: 'center' }}>
+
+
+                                <Text size={600} style={{
+                                    color: isDarkMode ? '#ffffff' : '#323130',
+                                    fontWeight: '700',
+                                    marginBottom: '12px',
+                                    display: 'block',
+                                    fontSize: '24px'
+                                }}>
+                                    🎉 Welcome to Version 1.0 !
+                                </Text>
                             </DialogContent>
                         </DialogBody>
                     </DialogSurface>
