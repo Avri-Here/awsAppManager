@@ -10,11 +10,11 @@ body {
     height: 100%;
     overflow: hidden;
     background: linear-gradient(to bottom,
-            #0a0f1c 0%,
-            #162436 25%,
-            #1f2937 50%,
-            #0f172a 75%,
-            #020617 100%);
+            #1a2332 0%,
+            #253448 25%,
+            #2f3f50 50%,
+            #1f2937 75%,
+            #0f1a2a 100%);
     color: #ffffff;
     font-family: 'Segoe UI Variable', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 13px;
@@ -717,7 +717,6 @@ button:not(:disabled):active {
     will-change: transform;
 }
 
-/* עננים נוספים שמופיעים רק כשהאפליקציה רצה */
 .running-clouds {
     position: absolute;
     top: 0;
