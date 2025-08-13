@@ -32,6 +32,8 @@ const baseConfig = {
         // guid: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
         differentialPackage: false,
         allowElevation: false,
+        installerIcon: "src/assets/icons/managerAws.ico",
+        uninstallerIcon: "src/assets/icons/managerAws.ico",
     }
 };
 
@@ -68,7 +70,6 @@ const platformSpecificConfigurations = {
             signDlls: false,
             publisherName: "Avri-Here"
         },
-        icon: "src/assets/icons/managerAws.ico",
         compression: "store",
         detectUpdateChannel: true,
         nodeGypRebuild: false,
