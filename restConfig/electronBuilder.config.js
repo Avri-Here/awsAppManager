@@ -1,8 +1,6 @@
-
-
 const baseConfig = {
     appId: "com.avri.awsAppManager",
-    productName: "awsAppManager",
+    productName: "AWS App Manager",
     directories: {
         output: "release",
         buildResources: "build",
@@ -16,6 +14,8 @@ const baseConfig = {
     ],
     extraMetadata: {
         version: process.env.VITE_APP_VERSION,
+        description: "AWS Application Manager - A tool for managing AWS applications",
+        author: "Avri-Here"
     },
     publish: {
         provider: "github",
@@ -25,32 +25,16 @@ const baseConfig = {
     },
     nsis: {
         oneClick: false,
-        perMachine: false,
+        perMachine: true,
         allowToChangeInstallationDirectory: false,
         createDesktopShortcut: true,
         createStartMenuShortcut: false,
-        shortcutName: "awsAppManager",
-        runAfterFinish: true,
-        include: "build/installer.nsh",
-        installerIcon: "build/installer/img/managerAws.ico",
-        uninstallerIcon: "build/installer/img/managerAws.ico",
-        installerHeader: "build/installer/img/nsisMetroHeader.bmp",
-        installerHeaderIcon: "build/installer/img/managerAws.ico",
-        installerSidebar: "build/installer/img/nsisMetroWizard.bmp",
-        guid: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
-        displayLanguageSelector: false,
-        multiLanguageInstaller: false,
-        packElevateHelper: false,
-        deleteAppDataOnUninstall: false,
-        menuCategory: "Productivity",
-        warningsAsErrors: false,
-        unicode: true
+        // guid: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
+        differentialPackage: false
     }
 };
 
-
 const platformSpecificConfigurations = {
-
     darwin: {
         ...baseConfig,
         afterPack: "./restConfig/codeSignMac.mjs",
@@ -67,8 +51,8 @@ const platformSpecificConfigurations = {
             backgroundColor: "#1F1F1F",
             displayName: "awsAppManager",
             identityName: "com.avri.awsAppManager",
-            publisher: "CN=Avraham Yom-Tov",
-            publisherDisplayName: "Avraham Yom-Tov",
+            publisher: "CN=Avri-Here",
+            publisherDisplayName: "Avri-Here",
             languages: ["en-US"],
         },
         win: {
@@ -77,13 +61,14 @@ const platformSpecificConfigurations = {
                 target: "nsis",
                 arch: ["x64"]
             }],
-            legalTrademarks: "AWS App Manager © 2024",
+            legalTrademarks: "Avri © 2025",
             verifyUpdateCodeSignature: false,
             requestedExecutionLevel: "asInvoker",
-            signAndEditExecutable: true,
-            signDlls: false
+            signAndEditExecutable: false,
+            signDlls: false,
+            publisherName: "Avri-Here"
         },
-        compression: "maximum",
+        compression: "normal",
         detectUpdateChannel: true,
     },
     linux: {
@@ -97,32 +82,3 @@ const platformSpecificConfigurations = {
 };
 
 module.exports = platformSpecificConfigurations[process.platform];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
