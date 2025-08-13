@@ -24,13 +24,35 @@ const baseConfig = {
         private: false
     },
     nsis: {
-        differentialPackage: true,
-        deleteAppDataOnUninstall: false,
         oneClick: false,
+        perMachine: false,
         allowToChangeInstallationDirectory: true,
-        createDesktopShortcut: true,
+        createDesktopShortcut: "always",
         createStartMenuShortcut: true,
+        shortcutName: "AWS App Manager",
         runAfterFinish: true,
+        include: "build/installer.nsh",
+
+        // Modern Windows 11 UI Design
+        installerIcon: "build/Icons/modern-install-blue.ico",
+        uninstallerIcon: "build/Icons/modern-uninstall-blue.ico",
+        installerHeader: "build/Header/nsis3-metro.bmp",
+        installerHeaderIcon: "build/Icons/modern-install-blue.ico",
+        installerSidebar: "build/Wizard/nsis3-metro.bmp",
+
+                // Windows 11 Modern Style
+        guid: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
+        displayLanguageSelector: false,
+        multiLanguageInstaller: false,
+        packElevateHelper: true,
+        
+        // Enhanced installer behavior
+        deleteAppDataOnUninstall: false,
+        menuCategory: "Productivity",
+        
+        // Custom branding
+        warningsAsErrors: false,
+        unicode: true
     }
 };
 
@@ -57,9 +79,18 @@ const platformSpecificConfigurations = {
             publisherDisplayName: "Avraham Yom-Tov",
             languages: ["en-US"],
         },
-        win: {
+                win: {
             icon: "src/assets/icons/managerAws.ico",
-            target: [{ target: "nsis", arch: ["x64"] }],
+            target: [{ 
+                target: "nsis", 
+                arch: ["x64"]
+            }],
+            legalTrademarks: "AWS App Manager © 2024",
+            verifyUpdateCodeSignature: false,
+            // Windows 11 compatibility
+            requestedExecutionLevel: "asInvoker",
+            signAndEditExecutable: true,
+            signDlls: false
         },
         compression: "maximum",
         detectUpdateChannel: true,

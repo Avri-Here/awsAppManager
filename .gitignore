@@ -26,4 +26,8 @@ coverage
 *.sw?
 package-lock.json
 justRunItTool
-Graphics
+/Graphics
+/Wizard
+/build/Icons
+/build/Header 
+/build/Wizard
