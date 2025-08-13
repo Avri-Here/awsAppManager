@@ -72,10 +72,10 @@ export default (mainWindow = new BrowserWindow()) => {
     });
 
 
-    ipcMain.handle("updateXmlConfiguration", async (_, authToken) => {
+    ipcMain.on("updateXmlConfiguration", async (_, authToken) => {
 
         try {
-            await updateMavenSettings(authToken);
+            updateMavenSettings(authToken);
             console.log("Updated Maven settings.xml with CodeArtifact token .");
         } catch (error) {
             console.error("Failed to update Maven settings.xml :", error);
@@ -83,10 +83,10 @@ export default (mainWindow = new BrowserWindow()) => {
         }
     });
 
-    ipcMain.handle("updateNpmConfiguration", async (_, authToken) => {
+    ipcMain.on("updateNpmConfiguration", async (_, authToken) => {
 
         try {
-            await updateNpmConfig(authToken);
+            updateNpmConfig(authToken);
             console.log("Updated NPM config with CodeArtifact token .");
         } catch (error) {
             console.error("Failed to update NPM config :", error);
