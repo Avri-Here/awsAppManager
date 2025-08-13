@@ -1,0 +1,43 @@
+{
+    "name": "aws-dev-manager",
+    "version": "1.0.1",
+    "author": "Avraham Yom-Tov",
+    "main": "dist-main/main.js",
+    "description": "Aws Dev Manager !",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Avri-Here/awsAppManager.git"
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "publishGithub": "node restConfig/publishGithub.mjs",
+        "packDistOnly": "npm run build && electron-builder --dir --config restConfig/electronBuilder.config.js --publish=never",
+        "packageAppForYou": "npm run build && electron-builder --config restConfig/electronBuilder.config.js --publish=never"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-react": "^4.3.4",
+        "electron": "^37.2.6",
+        "electron-builder": "^25.1.8",
+        "vite": "^6.3.4",
+        "vite-plugin-electron": "^0.29.0",
+        "vite-plugin-electron-renderer": "^0.14.6"
+    },
+    "dependencies": {
+        "electron-updater": "^6.3.9",
+        "@aws-sdk/client-codeartifact": "^3.840.0",
+        "@aws-sdk/client-sts": "^3.840.0",
+        "@aws-sdk/credential-providers": "^3.840.0",
+        "@fluentui/react-components": "^9.58.2",
+        "@fluentui/react-icons": "^2.0.274",
+        "ini": "^5.0.0",
+        "otplib": "^12.0.1",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "xml2js": "^0.6.2"
+    },
+    "build": {
+        "appId": "com.avri.awsAppManager",
+        "productName": "awsAppManager"
+    }
+}
