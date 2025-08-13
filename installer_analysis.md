@@ -54,8 +54,59 @@
 
 ## Step-by-Step Fix Plan
 
-1. **Phase 1:** Fix basic configuration (installation mode, directory selection)
-2. **Phase 2:** Properly integrate custom pages and disable default ones
-3. **Phase 3:** Fix shortcut creation logic
-4. **Phase 4:** Fix application launch functionality
-5. **Phase 5:** Test complete installer flow
+1. **Phase 1:** ✅ **COMPLETED** - Fix basic configuration (installation mode, directory selection)
+   - Set `perMachine: false` (install for current user only)
+   - Set `allowToChangeInstallationDirectory: false` (no directory selection dialog)
+   - Set `createDesktopShortcut: false` and `createStartMenuShortcut: false` (no shortcuts by default)
+
+2. **Phase 2:** ✅ **COMPLETED** - Properly integrate custom pages and disable default ones
+   - Removed complex custom pages that were interfering with NSIS flow
+   - Created minimal installer.nsh that doesn't add unnecessary dialogs
+   - This should eliminate the unwanted "Choose Installation Options" and installation directory dialogs
+
+3. **Phase 3:** ✅ **COMPLETED** - Fix shortcut creation logic
+   - Shortcuts are now controlled by electron-builder configuration, not custom NSIS code
+   - Since both options are set to `false`, no shortcuts should be created
+
+4. **Phase 4:** **PENDING** - Fix application launch functionality
+5. **Phase 5:** **PENDING** - Test complete installer flow
+
+## IMMEDIATE FIXES APPLIED ✅
+
+Based on web research and electron-builder 25.1.8 documentation:
+
+1. **Fixed Installation Dialog Issues:**
+   - `perMachine: false` → Forces per-user installation (no "who to install for" dialog)
+   - `allowToChangeInstallationDirectory: false` → Removes directory selection dialog
+
+2. **Fixed Shortcut Creation:**
+   - `createDesktopShortcut: false` → No desktop shortcuts
+   - `createStartMenuShortcut: false` → No start menu shortcuts
+
+3. **Simplified Custom NSIS Script:**
+   - Removed interfering custom pages
+   - Minimal installer.nsh with only Windows 11 styling
+
+## ✅ TEST RESULTS - PHASE 1 & 2 COMPLETED
+
+### **Current Behavior After Fixes:**
+
+1. **✅ FIXED:** No desktop shortcuts are created
+2. **✅ FIXED:** Installation completes successfully 
+3. **✅ FIXED:** Finish window shows with "Run" option
+4. **❌ STILL ISSUE:** "Choose Installation Options" dialog still appears (per-user vs all users)
+
+### **Remaining Issues to Fix:**
+
+1. **Installation Options Dialog:** Still shows "Who should this application be installed for?" 
+   - Shows "Anyone who uses this computer (all users)" 
+   - Shows "Only for me (avrahamy)" ✓ (pre-selected)
+   - **Problem:** This dialog should not appear at all
+
+### **Next Phase - Add User Choice for Shortcuts:**
+
+User wants to ADD back the ability to choose:
+- ☐ Create desktop shortcut (user choice)
+- ☐ Add to Start Menu (user choice)
+
+But REMOVE the installation scope dialog (per-user vs all users).

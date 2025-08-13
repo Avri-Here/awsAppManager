@@ -26,9 +26,9 @@ const baseConfig = {
     nsis: {
         oneClick: false,
         perMachine: false,
-        allowToChangeInstallationDirectory: true,
-        createDesktopShortcut: "always",
-        createStartMenuShortcut: true,
+        allowToChangeInstallationDirectory: false,
+        createDesktopShortcut: false,
+        createStartMenuShortcut: false,
         shortcutName: "AWS App Manager",
         runAfterFinish: true,
         include: "build/installer.nsh",
