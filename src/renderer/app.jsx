@@ -451,17 +451,18 @@ const AwsCredentialManager = () => {
             color: isDarkMode ? "#ffffff" : "#000000",
         },
         header: {
-            backgroundColor: isDarkMode ? "rgba(37, 37, 38, 0.95)" : "rgba(248, 248, 248, 0.95)",
-            borderBottomColor: isDarkMode ? "#3c3c3c" : "#e1dfdd",
-            boxShadow: isDarkMode ? "0 1px 3px rgba(0, 0, 0, 0.3)" : "0 1px 3px rgba(0, 0, 0, 0.1)",
+            // backgroundColor: isDarkMode ? "rgba(37, 37, 38, 0.95)" : "rgba(248, 248, 248, 0.95)",
+            // borderBottomColor: isDarkMode ? "#3c3c3c" : "#e1dfdd",
+            // boxShadow: isDarkMode ? "0 1px 3px rgba(0, 0, 0, 0.3)" : "0 1px 3px rgba(0, 0, 0, 0.1)",
+            
         },
         mainContent: {
             backgroundColor: "transparent",
         },
         statusBar: {
-            backgroundColor: isDarkMode ? "rgba(37, 37, 38, 0.95)" : "rgba(248, 248, 248, 0.95)",
-            borderTopColor: isDarkMode ? "#3c3c3c" : "#e1dfdd",
-            boxShadow: isDarkMode ? "0 -1px 3px rgba(0, 0, 0, 0.3)" : "0 -1px 3px rgba(0, 0, 0, 0.1)",
+            // backgroundColor: isDarkMode ? "rgba(37, 37, 38, 0.95)" : "rgba(248, 248, 248, 0.95)",
+            // borderTopColor: isDarkMode ? "#3c3c3c" : "#e1dfdd",
+            // boxShadow: isDarkMode ? "0 -1px 3px rgba(0, 0, 0, 0.3)" : "0 -1px 3px rgba(0, 0, 0, 0.1)",
         },
         iconButton: {
             color: isDarkMode ? "#ffffff" : "#323130",
@@ -471,6 +472,7 @@ const AwsCredentialManager = () => {
         },
         text: {
             color: isDarkMode ? "#ffffff" : "#323130",
+            backgroundColor: "transparent",
         },
     }), [isDarkMode]);
 
