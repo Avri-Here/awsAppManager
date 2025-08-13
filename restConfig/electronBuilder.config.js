@@ -70,12 +70,9 @@ const platformSpecificConfigurations = {
             signAndEditExecutable: false,
             signDlls: false,
             publisherName: "Avri-Here",
-            requestedExecutionLevel: "asInvoker"
         },
-        compression: "store",
+        compression: "normal",
         detectUpdateChannel: true,
-        nodeGypRebuild: false,
-        buildDependenciesFromSource: false,
     },
     linux: {
         ...baseConfig,
