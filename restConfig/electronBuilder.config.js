@@ -1,6 +1,6 @@
 const baseConfig = {
     appId: "com.avri.awsAppManager",
-    productName: "AWS App Manager",
+    productName: "awsAppManager",
     directories: {
         output: "release",
         buildResources: "build",
