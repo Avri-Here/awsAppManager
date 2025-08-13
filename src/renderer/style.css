@@ -573,13 +573,15 @@ button:not(:disabled):active {
 .glassmorphism-background.running .glass-orb {
     animation-duration: 8s !important;
     opacity: 0.9 !important;
-    filter: brightness(1.2) !important;
+    filter: brightness(1.2) drop-shadow(0 0 8px rgba(0, 120, 212, 0.3)) !important;
+    transform: scale(1.05) !important;
 }
 
 .glassmorphism-background.ready .glass-orb {
     animation-duration: 25s !important;
     opacity: 0.4 !important;
-    filter: brightness(0.8) !important;
+    filter: brightness(0.8) drop-shadow(0 0 4px rgba(0, 120, 212, 0.1)) !important;
+    transform: scale(1) !important;
 }
 
 .glass-orb {
@@ -589,6 +591,7 @@ button:not(:disabled):active {
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     will-change: transform;
+    transition: all 2.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-orb-1 {
@@ -695,6 +698,76 @@ button:not(:disabled):active {
     animation: glassFloat2 27s ease-in-out infinite;
     animation-delay: -8s;
     filter: drop-shadow(0 3px 11px rgba(0, 120, 212, 0.12));
+}
+
+.glass-orb-9 {
+    top: 8%;
+    left: 65%;
+    width: 28px;
+    height: 28px;
+    background: radial-gradient(circle at 40% 40%,
+            rgba(255, 255, 255, 0.11) 0%,
+            rgba(0, 120, 212, 0.07) 38%,
+            transparent 68%);
+    animation: glassFloat3 32s ease-in-out infinite;
+    animation-delay: -12s;
+    filter: drop-shadow(0 2px 7px rgba(0, 120, 212, 0.1));
+}
+
+.glass-orb-10 {
+    top: 32%;
+    left: 20%;
+    width: 33px;
+    height: 33px;
+    background: radial-gradient(circle at 70% 30%,
+            rgba(255, 255, 255, 0.12) 0%,
+            rgba(0, 120, 212, 0.08) 40%,
+            transparent 70%);
+    animation: glassFloat4 29s ease-in-out infinite;
+    animation-delay: -15s;
+    filter: drop-shadow(0 2px 8px rgba(0, 120, 212, 0.11));
+}
+
+.glass-orb-11 {
+    top: 68%;
+    left: 60%;
+    width: 36px;
+    height: 36px;
+    background: radial-gradient(circle at 50% 80%,
+            rgba(255, 255, 255, 0.13) 0%,
+            rgba(0, 120, 212, 0.09) 36%,
+            transparent 66%);
+    animation: glassFloat5 26s ease-in-out infinite;
+    animation-delay: -20s;
+    filter: drop-shadow(0 3px 9px rgba(0, 120, 212, 0.12));
+}
+
+.glass-orb-12 {
+    top: 85%;
+    right: 8%;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at 60% 60%,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(0, 120, 212, 0.06) 42%,
+            transparent 72%);
+    animation: glassFloat6 31s ease-in-out infinite;
+    animation-delay: -25s;
+    filter: drop-shadow(0 2px 6px rgba(0, 120, 212, 0.09));
+}
+
+.glass-orb-13 {
+    top: 25%;
+    right: 5%;
+    width: 26px;
+    height: 26px;
+    background: radial-gradient(circle at 30% 50%,
+            rgba(255, 255, 255, 0.09) 0%,
+            rgba(0, 120, 212, 0.05) 45%,
+            transparent 75%);
+    animation: glassFloat1 33s ease-in-out infinite;
+    animation-delay: -18s;
+    filter: drop-shadow(0 1px 5px rgba(0, 120, 212, 0.08));
 }
 
 

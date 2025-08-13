@@ -162,6 +162,11 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
                 <div className="glass-orb glass-orb-6"></div>
                 <div className="glass-orb glass-orb-7"></div>
                 <div className="glass-orb glass-orb-8"></div>
+                <div className="glass-orb glass-orb-9"></div>
+                <div className="glass-orb glass-orb-10"></div>
+                <div className="glass-orb glass-orb-11"></div>
+                <div className="glass-orb glass-orb-12"></div>
+                <div className="glass-orb glass-orb-13"></div>
             </div>
 
             <div className="main-status-container">
