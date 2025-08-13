@@ -752,45 +752,34 @@ button:not(:disabled):active {
     opacity: 1;
 }
 
-.ready-cloud {
+/* עיצוב Reflection Loop יוקרתי למצב Ready */
+.ready-reflection {
     position: absolute;
-    color: rgba(255, 255, 255, 0.06);
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    will-change: transform;
-    filter: blur(0.3px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    pointer-events: none;
+    z-index: 3;
 }
 
-.ready-cloud-1 {
-    font-size: 40px;
-    top: 20%;
-    left: -55px;
-    animation: readyFloat1 40s ease-in-out infinite;
-    animation-delay: 0s;
-}
-
-.ready-cloud-2 {
-    font-size: 30px;
-    top: 40%;
-    left: -45px;
-    animation: readyFloat2 45s ease-in-out infinite;
-    animation-delay: -8s;
-}
-
-.ready-cloud-3 {
-    font-size: 50px;
-    top: 60%;
-    left: -65px;
-    animation: readyFloat3 42s ease-in-out infinite;
-    animation-delay: -15s;
-}
-
-.ready-cloud-4 {
-    font-size: 35px;
-    top: 80%;
+.ready-reflection::before {
+    content: '';
+    position: absolute;
+    top: -20px;
     left: -50px;
-    animation: readyFloat4 48s ease-in-out infinite;
-    animation-delay: -12s;
+    width: 300px;
+    height: 240px;
+    background: linear-gradient(45deg, 
+        transparent 0%, 
+        transparent 30%, 
+        rgba(255, 255, 255, 0.15) 50%, 
+        transparent 70%, 
+        transparent 100%);
+    border-radius: 50%;
+    animation: reflectionSweep 14s ease-in-out infinite;
+    opacity: 0;
 }
 
 .aws-cloud {
@@ -848,6 +837,38 @@ button:not(:disabled):active {
     left: -52px;
     animation: awsFloat6 29s ease-in-out infinite;
     animation-delay: -3s;
+}
+
+.aws-cloud-7 {
+    font-size: 40px;
+    top: 20%;
+    left: -55px;
+    animation: awsFloat7 35s ease-in-out infinite;
+    animation-delay: -18s;
+}
+
+.aws-cloud-8 {
+    font-size: 30px;
+    top: 40%;
+    left: -45px;
+    animation: awsFloat8 38s ease-in-out infinite;
+    animation-delay: -22s;
+}
+
+.aws-cloud-9 {
+    font-size: 50px;
+    top: 60%;
+    left: -65px;
+    animation: awsFloat9 33s ease-in-out infinite;
+    animation-delay: -28s;
+}
+
+.aws-cloud-10 {
+    font-size: 35px;
+    top: 80%;
+    left: -50px;
+    animation: awsFloat10 40s ease-in-out infinite;
+    animation-delay: -25s;
 }
 
 /* אנימציות AWS מתקדמות עם תנועה עדינה */
@@ -967,22 +988,21 @@ button:not(:disabled):active {
     }
 }
 
-/* אנימציות עדינות למצב Ready */
-@keyframes readyFloat1 {
+@keyframes awsFloat7 {
     0% {
         transform: translateX(0) translateY(0) scale(1);
     }
 
     25% {
-        transform: translateX(25vw) translateY(-4px) scale(1.01);
+        transform: translateX(25vw) translateY(-8px) scale(1.03);
     }
 
     50% {
-        transform: translateX(50vw) translateY(2px) scale(0.99);
+        transform: translateX(50vw) translateY(4px) scale(0.97);
     }
 
     75% {
-        transform: translateX(75vw) translateY(-3px) scale(1.005);
+        transform: translateX(75vw) translateY(-6px) scale(1.01);
     }
 
     100% {
@@ -990,17 +1010,17 @@ button:not(:disabled):active {
     }
 }
 
-@keyframes readyFloat2 {
+@keyframes awsFloat8 {
     0% {
         transform: translateX(0) translateY(0) scale(0.98);
     }
 
     30% {
-        transform: translateX(30vw) translateY(3px) scale(1.02);
+        transform: translateX(30vw) translateY(6px) scale(1.02);
     }
 
     60% {
-        transform: translateX(60vw) translateY(-5px) scale(0.97);
+        transform: translateX(60vw) translateY(-10px) scale(0.96);
     }
 
     100% {
@@ -1008,21 +1028,21 @@ button:not(:disabled):active {
     }
 }
 
-@keyframes readyFloat3 {
+@keyframes awsFloat9 {
     0% {
         transform: translateX(0) translateY(0) scale(1.01);
     }
 
     20% {
-        transform: translateX(20vw) translateY(2px) scale(0.96);
+        transform: translateX(20vw) translateY(5px) scale(0.97);
     }
 
     50% {
-        transform: translateX(50vw) translateY(-6px) scale(1.03);
+        transform: translateX(50vw) translateY(-12px) scale(1.04);
     }
 
     80% {
-        transform: translateX(80vw) translateY(1px) scale(0.99);
+        transform: translateX(80vw) translateY(3px) scale(0.99);
     }
 
     100% {
@@ -1030,20 +1050,57 @@ button:not(:disabled):active {
     }
 }
 
-@keyframes readyFloat4 {
+@keyframes awsFloat10 {
     0% {
         transform: translateX(0) translateY(0) scale(0.99);
     }
 
     40% {
-        transform: translateX(40vw) translateY(-3px) scale(1.01);
+        transform: translateX(40vw) translateY(-7px) scale(1.01);
     }
 
     70% {
-        transform: translateX(70vw) translateY(4px) scale(0.96);
+        transform: translateX(70vw) translateY(8px) scale(0.95);
     }
 
     100% {
         transform: translateX(calc(100vw + 65px)) translateY(0) scale(0.99);
+    }
+}
+
+/* אנימציית Reflection Loop יוקרתית */
+@keyframes reflectionSweep {
+    0% {
+        opacity: 0;
+        transform: rotate(-45deg) translateX(-150px);
+    }
+    
+    2% {
+        opacity: 0.3;
+    }
+    
+    8% {
+        opacity: 0.8;
+        transform: rotate(-45deg) translateX(0px);
+    }
+    
+    12% {
+        opacity: 0.4;
+        transform: rotate(-45deg) translateX(150px);
+    }
+    
+    15% {
+        opacity: 0;
+        transform: rotate(-45deg) translateX(200px);
+    }
+    
+    85% {
+        opacity: 0;
+        transform: rotate(-45deg) translateX(200px);
+    }
+    
+    100% {
+        opacity: 0;
+        transform: rotate(-45deg) translateX(-150px);
     }
 }

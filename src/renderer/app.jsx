@@ -170,14 +170,15 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
                 <CloudRegular className="aws-cloud aws-cloud-4" />
                 <CloudRegular className="aws-cloud aws-cloud-5" />
                 <CloudRegular className="aws-cloud aws-cloud-6" />
+                <CloudRegular className="aws-cloud aws-cloud-7" />
+                <CloudRegular className="aws-cloud aws-cloud-8" />
+                <CloudRegular className="aws-cloud aws-cloud-9" />
+                <CloudRegular className="aws-cloud aws-cloud-10" />
             </div>
             
-            {/* עננים עדינים למצב Ready */}
+            {/* Reflection Loop יוקרתי למצב Ready */}
             <div className={`ready-clouds ${!isRunning ? 'active' : ''}`}>
-                <CloudRegular className="ready-cloud ready-cloud-1" />
-                <CloudRegular className="ready-cloud ready-cloud-2" />
-                <CloudRegular className="ready-cloud ready-cloud-3" />
-                <CloudRegular className="ready-cloud ready-cloud-4" />
+                <div className="ready-reflection"></div>
             </div>
             
             <div className="main-status-container">
