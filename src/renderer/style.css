@@ -9,7 +9,12 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #1e1e1e;
+    background: linear-gradient(to bottom, 
+        #0a0f1c 0%, 
+        #162436 25%, 
+        #1f2937 50%, 
+        #0f172a 75%, 
+        #020617 100%);
     color: #ffffff;
     font-family: 'Segoe UI Variable', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 13px;
@@ -489,4 +494,154 @@ button:not(:disabled):active {
     display: flex;
     align-items: center;
     gap: 4px;
+}
+
+/* עננים נעים ברקע */
+.cloud-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.floating-cloud {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.03);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.cloud-1 {
+    font-size: 80px;
+    top: 10%;
+    left: -100px;
+    animation: floatCloud1 45s linear infinite;
+}
+
+.cloud-2 {
+    font-size: 60px;
+    top: 20%;
+    left: -80px;
+    animation: floatCloud2 35s linear infinite;
+    animation-delay: -10s;
+}
+
+.cloud-3 {
+    font-size: 70px;
+    top: 60%;
+    left: -90px;
+    animation: floatCloud3 50s linear infinite;
+    animation-delay: -25s;
+}
+
+.cloud-4 {
+    font-size: 50px;
+    top: 70%;
+    left: -70px;
+    animation: floatCloud4 40s linear infinite;
+    animation-delay: -15s;
+}
+
+.cloud-5 {
+    font-size: 85px;
+    top: 5%;
+    left: -110px;
+    animation: floatCloud5 55s linear infinite;
+    animation-delay: -30s;
+}
+
+@keyframes floatCloud1 {
+    0% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(25vw) translateY(-10px); }
+    50% { transform: translateX(50vw) translateY(5px); }
+    75% { transform: translateX(75vw) translateY(-5px); }
+    100% { transform: translateX(calc(100vw + 100px)) translateY(0); }
+}
+
+@keyframes floatCloud2 {
+    0% { transform: translateX(0) translateY(0); }
+    30% { transform: translateX(30vw) translateY(8px); }
+    60% { transform: translateX(60vw) translateY(-12px); }
+    100% { transform: translateX(calc(100vw + 100px)) translateY(0); }
+}
+
+@keyframes floatCloud3 {
+    0% { transform: translateX(0) translateY(0); }
+    20% { transform: translateX(20vw) translateY(6px); }
+    50% { transform: translateX(50vw) translateY(-8px); }
+    80% { transform: translateX(80vw) translateY(4px); }
+    100% { transform: translateX(calc(100vw + 100px)) translateY(0); }
+}
+
+@keyframes floatCloud4 {
+    0% { transform: translateX(0) translateY(0); }
+    40% { transform: translateX(40vw) translateY(-6px); }
+    70% { transform: translateX(70vw) translateY(10px); }
+    100% { transform: translateX(calc(100vw + 100px)) translateY(0); }
+}
+
+@keyframes floatCloud5 {
+    0% { transform: translateX(0) translateY(0); }
+    35% { transform: translateX(35vw) translateY(7px); }
+    65% { transform: translateX(65vw) translateY(-9px); }
+    100% { transform: translateX(calc(100vw + 100px)) translateY(0); }
+}
+
+/* אנימציות לסמל הענן המרכזי */
+.cloud-icon-large {
+    font-size: 64px;
+    color: #0078d4;
+    opacity: 0.95;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: cloudBreathing 4s ease-in-out infinite;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes cloudBreathing {
+    0% { transform: scale(1) translateY(0px); }
+    50% { transform: scale(1.02) translateY(-2px); }
+    100% { transform: scale(1) translateY(0px); }
+}
+
+
+
+/* שיפורים נוספים לעיצוב מינימליסטי ועתידני */
+.main-status-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.status-indicator-row {
+    margin-top: -10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* שיפור לעננים הנעים */
+.floating-cloud {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.02);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
 }

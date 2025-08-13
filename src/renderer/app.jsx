@@ -153,14 +153,23 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
 
     return (
         <div className={styles.mainContent} style={themeStyles.mainContent}>
+            {/* רקע עננים נעים */}
+            <div className="cloud-background">
+                <CloudRegular className="floating-cloud cloud-1" />
+                <CloudRegular className="floating-cloud cloud-2" />
+                <CloudRegular className="floating-cloud cloud-3" />
+                <CloudRegular className="floating-cloud cloud-4" />
+                <CloudRegular className="floating-cloud cloud-5" />
+            </div>
+            
             <div className="main-status-container">
                 <CloudRegular className="cloud-icon-large" />
                 <div className="status-indicator-row">
                     <div className={statusDotClass} />
-                    <Text size={500} style={{
-                        fontWeight: '700',
+                    <Text size={300} style={{
+                        fontWeight: '600',
                         color: isDarkMode ? "#ffffff" : "#323130",
-                        fontSize: '25px'
+                        fontSize: '18px'
                     }}>
                         {isRunning ? 'Running' : 'Ready'}
                     </Text>
@@ -426,7 +435,9 @@ const AwsCredentialManager = () => {
 
 
         container: {
-            backgroundColor: isDarkMode ? "#1e1e1e" : "#ffffff",
+            background: isDarkMode ? 
+                "linear-gradient(to bottom, #0a0f1c 0%, #162436 25%, #1f2937 50%, #0f172a 75%, #020617 100%)" : 
+                "linear-gradient(to bottom, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%)",
             color: isDarkMode ? "#ffffff" : "#000000",
         },
         header: {
@@ -435,7 +446,7 @@ const AwsCredentialManager = () => {
             boxShadow: isDarkMode ? "0 1px 3px rgba(0, 0, 0, 0.3)" : "0 1px 3px rgba(0, 0, 0, 0.1)",
         },
         mainContent: {
-            backgroundColor: isDarkMode ? "#1e1e1e" : "#f5f5f5",
+            backgroundColor: "transparent",
         },
         statusBar: {
             backgroundColor: isDarkMode ? "rgba(37, 37, 38, 0.95)" : "rgba(248, 248, 248, 0.95)",
