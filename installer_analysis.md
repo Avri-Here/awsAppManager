@@ -103,10 +103,22 @@ Based on web research and electron-builder 25.1.8 documentation:
    - Shows "Only for me (avrahamy)" ✓ (pre-selected)
    - **Problem:** This dialog should not appear at all
 
-### **Next Phase - Add User Choice for Shortcuts:**
+## ✅ PHASE 3 COMPLETED - Added Shortcut Selection
 
-User wants to ADD back the ability to choose:
-- ☐ Create desktop shortcut (user choice)
-- ☐ Add to Start Menu (user choice)
+### **New Changes Applied:**
 
-But REMOVE the installation scope dialog (per-user vs all users).
+1. **Fixed Installation Scope Dialog:**
+   - Set `packElevateHelper: false` to remove the "Who should this application be installed for?" dialog
+   - This forces per-user installation without asking
+
+2. **Added Custom Shortcut Selection Page:**
+   - Created custom NSIS page with checkboxes for:
+     - ☐ Create Desktop Shortcut (unchecked by default)
+     - ✅ Add to Start Menu (checked by default)
+   - User can now choose which shortcuts to create
+
+### **Expected Behavior Now:**
+- ❌ NO "Choose Installation Options" dialog (per-user vs all users)
+- ✅ SHOWS custom "Installation Options" page with shortcut choices
+- ✅ Creates shortcuts ONLY based on user selection
+- ✅ Modern Segoe UI font styling

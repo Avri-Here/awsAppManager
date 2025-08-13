@@ -40,7 +40,7 @@ const baseConfig = {
         guid: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
         displayLanguageSelector: false,
         multiLanguageInstaller: false,
-        packElevateHelper: true,
+        packElevateHelper: false,
         deleteAppDataOnUninstall: false,
         menuCategory: "Productivity",
         warningsAsErrors: false,
