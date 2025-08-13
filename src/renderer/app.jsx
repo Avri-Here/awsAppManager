@@ -151,22 +151,137 @@ const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
         return isRunning ? styles.statusDotRunning : styles.statusDotReady;
     }, [isRunning, styles.statusDotRunning, styles.statusDotReady]);
 
+    const getRandomPosition = () => {
+        const minTop = 12;
+        const maxTop = 78;
+        const minLeft = 6;
+        const maxLeft = 85;
+
+        return {
+            top: Math.random() * (maxTop - minTop) + minTop,
+            left: Math.random() * (maxLeft - minLeft) + minLeft
+        };
+    };
+
+    const handleExplodeEffect = (orbElement) => {
+        orbElement.classList.add('pre-explode');
+
+        setTimeout(() => {
+            orbElement.classList.remove('pre-explode');
+
+            orbElement.classList.add('mega-exploding');
+
+            createExplosionParticles(orbElement);
+
+            setTimeout(() => {
+                orbElement.style.opacity = '0';
+                orbElement.classList.remove('mega-exploding');
+
+                setTimeout(() => {
+                    const newPosition = getRandomPosition();
+                    orbElement.style.top = `${newPosition.top}%`;
+                    orbElement.style.left = `${newPosition.left}%`;
+                    orbElement.style.opacity = '1';
+                    orbElement.classList.add('epic-regenerating');
+
+                    setTimeout(() => {
+                        orbElement.classList.remove('epic-regenerating');
+                    }, 700);
+                }, 150);
+            }, 600);
+        }, 120);
+    };
+
+    const rand = (min, max) => {
+        return Math.floor(Math.random() * (max + 1)) + min;
+    };
+
+    const createExplosionParticles = (orbElement) => {
+        const rect = orbElement.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const particles = 15;
+
+        const explosion = document.createElement('div');
+        explosion.className = 'orb-explosion';
+
+        explosion.style.left = `${centerX - 300}px`;
+        explosion.style.top = `${centerY - 300}px`;
+
+        document.body.appendChild(explosion);
+
+        for (let i = 0; i < particles; i++) {
+            const x = explosion.offsetWidth / 2 +
+                rand(80, 150) * Math.cos((2 * Math.PI * i) / rand(particles - 10, particles + 10));
+            const y = explosion.offsetHeight / 2 +
+                rand(80, 150) * Math.sin((2 * Math.PI * i) / rand(particles - 10, particles + 10));
+
+            const r = rand(0, 100);
+            const g = rand(150, 255);
+            const b = 255;
+            const color = `rgb(${r}, ${g}, ${b})`;
+
+            // יצירת חלקיק פשוט
+            const particle = document.createElement('div');
+            particle.className = 'explosion-particle';
+            particle.style.backgroundColor = color;
+            particle.style.top = `${y}px`;
+            particle.style.left = `${x}px`;
+
+            if (i === 0) {
+                particle.addEventListener('animationend', () => {
+                    if (explosion.parentNode) {
+                        explosion.parentNode.removeChild(explosion);
+                    }
+                });
+            }
+
+            explosion.appendChild(particle);
+        }
+    };
+
+    const handleOrbClick = (event) => {
+        event.stopPropagation();
+        const orbElement = event.currentTarget;
+
+        if (orbElement.classList.contains('pre-explode') ||
+            orbElement.classList.contains('mega-exploding') ||
+            orbElement.classList.contains('epic-regenerating')) {
+            return;
+        }
+
+        handleExplodeEffect(orbElement);
+    };
+
     return (
         <div className={styles.mainContent} style={themeStyles.mainContent}>
+            <div className={`glassmorphism-background ${isRunning ? 'running active' : 'ready active'}`}>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(num => (
+                    <div
+                        key={num}
+                        className={`glass-orb glass-orb-${num}`}
+                        onClick={handleOrbClick}
+                        title="לחץ לפיצוץ חלק! 💙"
+                    />
+                ))}
+            </div>
+
             <div className="main-status-container">
-                <CloudRegular className="cloud-icon-large" />
+                {/* <CloudRegular className="cloud-icon-large" /> */}
                 <div className="status-indicator-row">
                     <div className={statusDotClass} />
-                    <Text size={500} style={{
+                    <Text size={300} style={{
                         fontWeight: '700',
                         color: isDarkMode ? "#ffffff" : "#323130",
-                        fontSize: '25px'
+                        fontSize: '18px'
                     }}>
                         {isRunning ? 'Running' : 'Ready'}
                     </Text>
                     <div className={statusDotClass} />
                 </div>
             </div>
+
         </div>
     );
 });
@@ -231,7 +346,7 @@ const useStyles = makeStyles({
         justifyContent: "space-between",
         padding: "0 25px",
         borderTop: "1px solid transparent",
-        backdropFilter: "blur(20px)",
+        backdropFilter: "blur(10px)",
         position: "relative",
     },
 
@@ -426,21 +541,24 @@ const AwsCredentialManager = () => {
 
 
         container: {
-            backgroundColor: isDarkMode ? "#1e1e1e" : "#ffffff",
+            background: isDarkMode ?
+                "linear-gradient(to bottom, #1a2332 0%, #253448 25%, #2f3f50 50%, #1f2937 75%, #0f1a2a 100%)" :
+                "linear-gradient(to bottom, #f0f4f8 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%)",
             color: isDarkMode ? "#ffffff" : "#000000",
         },
         header: {
-            backgroundColor: isDarkMode ? "rgba(37, 37, 38, 0.95)" : "rgba(248, 248, 248, 0.95)",
-            borderBottomColor: isDarkMode ? "#3c3c3c" : "#e1dfdd",
-            boxShadow: isDarkMode ? "0 1px 3px rgba(0, 0, 0, 0.3)" : "0 1px 3px rgba(0, 0, 0, 0.1)",
+            // backgroundColor: isDarkMode ? "rgba(37, 37, 38, 0.95)" : "rgba(248, 248, 248, 0.95)",
+            // borderBottomColor: isDarkMode ? "#3c3c3c" : "#e1dfdd",
+            // boxShadow: isDarkMode ? "0 1px 3px rgba(0, 0, 0, 0.3)" : "0 1px 3px rgba(0, 0, 0, 0.1)",
+
         },
         mainContent: {
-            backgroundColor: isDarkMode ? "#1e1e1e" : "#f5f5f5",
+            backgroundColor: "transparent",
         },
         statusBar: {
-            backgroundColor: isDarkMode ? "rgba(37, 37, 38, 0.95)" : "rgba(248, 248, 248, 0.95)",
-            borderTopColor: isDarkMode ? "#3c3c3c" : "#e1dfdd",
-            boxShadow: isDarkMode ? "0 -1px 3px rgba(0, 0, 0, 0.3)" : "0 -1px 3px rgba(0, 0, 0, 0.1)",
+            // backgroundColor: isDarkMode ? "rgba(37, 37, 38, 0.95)" : "rgba(248, 248, 248, 0.95)",
+            // borderTopColor: isDarkMode ? "#3c3c3c" : "#e1dfdd",
+            // boxShadow: isDarkMode ? "0 -1px 3px rgba(0, 0, 0, 0.3)" : "0 -1px 3px rgba(0, 0, 0, 0.1)",
         },
         iconButton: {
             color: isDarkMode ? "#ffffff" : "#323130",
@@ -450,6 +568,7 @@ const AwsCredentialManager = () => {
         },
         text: {
             color: isDarkMode ? "#ffffff" : "#323130",
+            backgroundColor: "transparent",
         },
     }), [isDarkMode]);
 
@@ -724,7 +843,7 @@ const AwsCredentialManager = () => {
                     isDarkMode={isDarkMode}
                 />
 
-                <div className={styles.statusBar} style={themeStyles.statusBar}>
+                <div className={`${styles.statusBar} status-bar-container`} style={themeStyles.statusBar}>
                     <div className={styles.statusLeft}>
                         <div className="dropdown-container">
 
