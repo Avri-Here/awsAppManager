@@ -39,7 +39,6 @@ const createMainApp = async () => {
             mainWindow.webContents.openDevTools({ mode: 'undocked' });
             mainWindow.webContents.removeAllListeners('devtools-opened');
             mainWindow.webContents.once('devtools-opened', () => mainWindow.focus());
-
         }
 
         startAppUpdates();

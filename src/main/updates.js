@@ -18,10 +18,7 @@ export default async () => {
         callEventHandlers(autoUpdater);
 
 
-        const result = await autoUpdater.checkForUpdates();
-        const isUpdateAvailable = !!result?.updateInfo && result.updateInfo.version !== process.env.appVersion;
-
-        global.logOnWebConsole('🔍 Update check completed :', isUpdateAvailable);
+        const { isUpdateAvailable } = await autoUpdater.checkForUpdates();
 
         if (isUpdateAvailable) {
 
