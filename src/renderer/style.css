@@ -601,7 +601,6 @@ button:not(:disabled):active {
     z-index: 10;
 }
 
-/* אפקט הכנה לפיצוץ - Juicy Squeeze */
 .glass-orb.pre-explode {
     animation: juicySquash 0.12s ease-out !important;
     pointer-events: none;
@@ -626,7 +625,6 @@ button:not(:disabled):active {
     }
 }
 
-/* פיצוץ עדין בסגנון Bubble Pop */
 .glass-orb.mega-exploding {
     animation: bubblePop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards !important;
     pointer-events: none;
@@ -668,25 +666,20 @@ button:not(:disabled):active {
     animation-delay: 0.05s;
 }
 
-/* חלקיקים עדינים בסגנון Geometry Dash */
 .glass-orb.mega-exploding {
     box-shadow: 
-        /* חלקיקים קטנים - כחול תכלת */
         12px 12px 3px -8px rgba(0, 191, 255, 0.8),
         -12px 12px 3px -8px rgba(0, 191, 255, 0.8),
         12px -12px 3px -8px rgba(0, 191, 255, 0.8),
         -12px -12px 3px -8px rgba(0, 191, 255, 0.8),
-        /* חלקיקים בינוניים - כחול בהיר */
         20px 0px 6px -3px rgba(135, 206, 250, 0.7),
         -20px 0px 6px -3px rgba(135, 206, 250, 0.7),
         0px 20px 6px -3px rgba(135, 206, 250, 0.7),
         0px -20px 6px -3px rgba(135, 206, 250, 0.7),
-        /* חלקיקים גדולים - תכלת עמוק */
         28px 28px 8px -2px rgba(30, 144, 255, 0.6),
         -28px 28px 8px -2px rgba(30, 144, 255, 0.6),
         28px -28px 8px -2px rgba(30, 144, 255, 0.6),
         -28px -28px 8px -2px rgba(30, 144, 255, 0.6),
-        /* זוהר מרכזי עדין */
         0px 0px 30px 8px rgba(255, 255, 255, 0.4),
         0px 0px 15px 3px rgba(0, 191, 255, 0.6);
     animation: bubbleExplodeParticles 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -787,7 +780,6 @@ button:not(:disabled):active {
     }
 }
 
-/* אפקט פיצוץ חלק כמו בקוד המקורי */
 .orb-explosion {
     position: fixed;
     width: 600px;
@@ -815,7 +807,6 @@ button:not(:disabled):active {
     }
 }
 
-/* חלקיקי פיצוץ עדינים בסגנון חדש */
 .simple-explosion-particle {
     position: fixed;
     width: 6px;
@@ -864,7 +855,6 @@ button:not(:disabled):active {
     }
 }
 
-/* אפקט התחדשות עדין בסגנון Geometry Dash */
 .glass-orb.epic-regenerating {
     animation: bubbleRegenerate 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards !important;
 }
