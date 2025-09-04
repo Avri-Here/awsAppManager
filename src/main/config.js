@@ -29,7 +29,7 @@ if (isDevMode) {
     process.on('unhandledRejection', console.error);
     process.env.DEV_UPDATE_CONFIG_PATH = join(dirFromRoot, "restConfig", "dev-app-update.yml");
 
-}
+};
 
 if (process.platform === 'win32') {
     app.setAppUserModelId('com.avri.awsAppManager');
