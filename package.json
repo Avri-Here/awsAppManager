@@ -1,6 +1,6 @@
 {
     "name": "aws-dev-manager",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "author": "Avraham Yom-Tov",
     "main": "dist-main/main.js",
     "description": "Aws Dev Manager !",

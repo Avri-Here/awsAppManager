@@ -539,6 +539,27 @@ const AwsCredentialManager = () => {
         }, 1000);
     };
 
+    const refreshMfaSession = async () => {
+        console.log("Refreshing MFA session credentials...");
+        const newMfaCode = await ipcRenderer.invoke("getMfaCodeValidation", settings.mfaSecret);
+        const newMfaCredentials = await ipcRenderer.invoke("getSessionTokenWithMFA", newMfaCode, settings.username);
+        await ipcRenderer.invoke("updateCredentialsFile", "nice-identity-mfa-session", newMfaCredentials);
+        console.log("MFA session credentials refreshed successfully");
+    };
+
+    const assumeRoleWithRetry = async (accountId, isCodeArtifact, username) => {
+        try {
+            return await ipcRenderer.invoke("assumeRole", accountId, isCodeArtifact, username);
+        } catch (error) {
+            if (error.message === 'MFA_SESSION_EXPIRED' || error.message === 'MFA_SESSION_INVALID') {
+                console.log(`MFA session expired during ${isCodeArtifact ? 'CodeArtifact' : 'default'} role assumption, refreshing and retrying...`);
+                await refreshMfaSession();
+                return await ipcRenderer.invoke("assumeRole", accountId, isCodeArtifact, username);
+            }
+            throw error;
+        }
+    };
+
     const themeStyles = useMemo(() => ({
 
 
@@ -622,7 +643,7 @@ const AwsCredentialManager = () => {
             if (abortController.signal.aborted) return;
 
             const { accountId } = selectedAccount;
-            const roleResponse = await ipcRenderer.invoke("assumeRole", accountId, false, settings.username);
+            const roleResponse = await assumeRoleWithRetry(accountId, false, settings.username);
             await ipcRenderer.invoke("updateCredentialsFile", "default", roleResponse);
             console.log("Updated credentials file under profile: default ...");
 
@@ -633,7 +654,7 @@ const AwsCredentialManager = () => {
 
                 if (abortController.signal.aborted) return;
 
-                const codeArtifactCredentials = await ipcRenderer.invoke("assumeRole", null, true, settings.username);
+                const codeArtifactCredentials = await assumeRoleWithRetry(null, true, settings.username);
                 console.log("Assumed CodeArtifact role and received temporary AWS credentials ..");
 
 

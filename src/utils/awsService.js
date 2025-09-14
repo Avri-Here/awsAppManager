@@ -3,6 +3,10 @@
 import { fromIni } from "@aws-sdk/credential-providers";
 import { STSClient, GetSessionTokenCommand, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { CodeartifactClient, GetAuthorizationTokenCommand } from "@aws-sdk/client-codeartifact";
+import { readFileSync, existsSync } from "fs";
+import { join } from "path";
+import { homedir } from "os";
+import { parse } from "ini";
 
 
 
@@ -61,6 +65,34 @@ const createStsClient = (region, profile) => {
     });
 };
 
+const checkMfaSessionValidity = () => {
+    try {
+        const credentialsPath = join(homedir(), '.aws', 'credentials');
+        
+        if (!existsSync(credentialsPath)) {
+            return false;
+        }
+
+        const credentialsContent = readFileSync(credentialsPath, 'utf-8');
+        const configData = parse(credentialsContent);
+        
+        if (!configData[defaultConfig.mfaSession] || !configData[defaultConfig.mfaSession].aws_session_token) {
+            return false;
+        }
+
+        // Check if we have all required fields
+        const mfaProfile = configData[defaultConfig.mfaSession];
+        if (!mfaProfile.aws_access_key_id || !mfaProfile.aws_secret_access_key || !mfaProfile.aws_session_token) {
+            return false;
+        }
+
+        return true;
+    } catch (error) {
+        console.error('Error checking MFA session validity:', error);
+        return false;
+    }
+};
+
 
 
 
@@ -104,19 +136,32 @@ const assumeRole = async (accountId, isCodeArtifact, username) => {
     const targetAccountId = isCodeArtifact ? defaultConfig.targetAccountNumCodeartifact : accountId;
     const targetRole = `arn:aws:iam::${targetAccountId}:role/${defaultConfig.roleName}`;
 
-    const mfaStsClient = createStsClient(defaultConfig.defaultRegion, defaultConfig.mfaSession);
-
-    const assumeRoleCommand = new AssumeRoleCommand({
-        RoleArn: targetRole,
-        RoleSessionName: username
-    });
-
-    const roleResponse = await mfaStsClient.send(assumeRoleCommand);
-    if (!roleResponse.Credentials) {
-        throw new Error(`No credentials returned from ${isCodeArtifact ? 'CodeArtifact assume role' : 'assume role'}`);
+    // Check if MFA session is valid before attempting assume role
+    if (!checkMfaSessionValidity()) {
+        throw new Error('MFA_SESSION_INVALID');
     }
 
-    return roleResponse.Credentials;
+    try {
+        const mfaStsClient = createStsClient(defaultConfig.defaultRegion, defaultConfig.mfaSession);
+
+        const assumeRoleCommand = new AssumeRoleCommand({
+            RoleArn: targetRole,
+            RoleSessionName: username
+        });
+
+        const roleResponse = await mfaStsClient.send(assumeRoleCommand);
+        if (!roleResponse.Credentials) {
+            throw new Error(`No credentials returned from ${isCodeArtifact ? 'CodeArtifact assume role' : 'assume role'}`);
+        }
+
+        return roleResponse.Credentials;
+    } catch (error) {
+        // Check if the error is due to expired token
+        if (error.message && error.message.includes('ExpiredToken')) {
+            throw new Error('MFA_SESSION_EXPIRED');
+        }
+        throw error;
+    }
 };
 
 
