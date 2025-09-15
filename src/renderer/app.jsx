@@ -13,7 +13,7 @@ import { FluentProvider, webLightTheme, Label } from "@fluentui/react-components
 import { Text, makeStyles, Tooltip, Dialog, DialogBody } from "@fluentui/react-components";
 import { DialogContent, Field, Input, Dropdown, Option, } from "@fluentui/react-components";
 import { ErrorCircleRegular, SettingsRegular, WeatherSunnyRegular } from "@fluentui/react-icons";
-import { WeatherMoonRegular, SubtractRegular, DocumentRegular, CircleFilled } from "@fluentui/react-icons";
+import { WeatherMoonRegular, SubtractRegular, DocumentRegular } from "@fluentui/react-icons";
 
 
 
@@ -41,7 +41,6 @@ const getSettingsFromStorage = () => {
     const xmlUpdate = localStorage.getItem('enableXmlUpdate');
     const npmUpdate = localStorage.getItem('enableNpmUpdate');
     const soundEnabled = localStorage.getItem('enableSound');
-    const balloonEffect = localStorage.getItem('enableBalloonEffect');
 
     return {
         username: localStorage.getItem('username'),
@@ -49,7 +48,6 @@ const getSettingsFromStorage = () => {
         enableXmlUpdate: xmlUpdate ? xmlUpdate === 'true' : false,
         enableNpmUpdate: npmUpdate ? npmUpdate === 'true' : false,
         enableSound: soundEnabled ? soundEnabled === 'true' : true,
-        enableBalloonEffect: balloonEffect ? balloonEffect === 'true' : true,
     };
 };
 
@@ -148,125 +146,14 @@ const Header = memo(({ styles, themeStyles }) => {
 
 Header.displayName = 'Header';
 
-const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode, enableBalloonEffect }) => {
+const MainContent = memo(({ styles, themeStyles, isRunning, isDarkMode }) => {
     const statusDotClass = useMemo(() => {
         return isRunning ? styles.statusDotRunning : styles.statusDotReady;
     }, [isRunning, styles.statusDotRunning, styles.statusDotReady]);
 
-    const getRandomPosition = () => {
-        const minTop = 12;
-        const maxTop = 78;
-        const minLeft = 6;
-        const maxLeft = 85;
-
-        return {
-            top: Math.random() * (maxTop - minTop) + minTop,
-            left: Math.random() * (maxLeft - minLeft) + minLeft
-        };
-    };
-
-    const handleExplodeEffect = (orbElement) => {
-        orbElement.classList.add('pre-explode');
-
-        setTimeout(() => {
-            orbElement.classList.remove('pre-explode');
-
-            orbElement.classList.add('mega-exploding');
-
-            createExplosionParticles(orbElement);
-
-            setTimeout(() => {
-                orbElement.style.opacity = '0';
-                orbElement.classList.remove('mega-exploding');
-
-                setTimeout(() => {
-                    const newPosition = getRandomPosition();
-                    orbElement.style.top = `${newPosition.top}%`;
-                    orbElement.style.left = `${newPosition.left}%`;
-                    orbElement.style.opacity = '1';
-                    orbElement.classList.add('epic-regenerating');
-
-                    setTimeout(() => {
-                        orbElement.classList.remove('epic-regenerating');
-                    }, 700);
-                }, 150);
-            }, 600);
-        }, 120);
-    };
-
-    const rand = (min, max) => {
-        return Math.floor(Math.random() * (max + 1)) + min;
-    };
-
-    const createExplosionParticles = (orbElement) => {
-        const rect = orbElement.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        const particles = 15;
-
-        const explosion = document.createElement('div');
-        explosion.className = 'orb-explosion';
-
-        explosion.style.left = `${centerX - 300}px`;
-        explosion.style.top = `${centerY - 300}px`;
-
-        document.body.appendChild(explosion);
-
-        for (let i = 0; i < particles; i++) {
-            const x = explosion.offsetWidth / 2 +
-                rand(80, 150) * Math.cos((2 * Math.PI * i) / rand(particles - 10, particles + 10));
-            const y = explosion.offsetHeight / 2 +
-                rand(80, 150) * Math.sin((2 * Math.PI * i) / rand(particles - 10, particles + 10));
-
-            const r = rand(0, 100);
-            const g = rand(150, 255);
-            const b = 255;
-            const color = `rgb(${r}, ${g}, ${b})`;
-
-            const particle = document.createElement('div');
-            particle.className = 'explosion-particle';
-            particle.style.backgroundColor = color;
-            particle.style.top = `${y}px`;
-            particle.style.left = `${x}px`;
-
-            if (i === 0) {
-                particle.addEventListener('animationend', () => {
-                    if (explosion.parentNode) {
-                        explosion.parentNode.removeChild(explosion);
-                    }
-                });
-            }
-
-            explosion.appendChild(particle);
-        }
-    };
-
-    const handleOrbClick = (event) => {
-        event.stopPropagation();
-        const orbElement = event.currentTarget;
-
-        if (orbElement.classList.contains('pre-explode') ||
-            orbElement.classList.contains('mega-exploding') ||
-            orbElement.classList.contains('epic-regenerating')) {
-            return;
-        }
-
-        handleExplodeEffect(orbElement);
-    };
 
     return (
         <div className={styles.mainContent} style={themeStyles.mainContent}>
-            <div className={`glassmorphism-background ${isRunning ? 'running active' : 'ready active'}`}>
-                {enableBalloonEffect && [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(num => (
-                    <div
-                        key={num}
-                        className={`glass-orb glass-orb-${num}`}
-                        onClick={handleOrbClick}
-                    />
-                ))}
-            </div>
-
             <div className="main-status-container">
 
                 <div className="status-indicator-row">
@@ -461,7 +348,6 @@ const AwsCredentialManager = () => {
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const [mfaTimeRemaining, setMfaTimeRemaining] = useState(0);
     const [selectedAccount, setSelectedAccount] = useState({ name: '', accountId: '' });
-    const [enableBalloonEffect, setEnableBalloonEffect] = useState(true);
 
 
     useEffect(() => {
@@ -488,7 +374,6 @@ const AwsCredentialManager = () => {
 
         setLocalUsername(loadedSettings.username || '');
         setLocalMfaSecret(loadedSettings.mfaSecret || '');
-        setEnableBalloonEffect(loadedSettings.enableBalloonEffect);
 
         return () => {
             ipcRenderer.removeListener("logOnWebConsole", handleLogOnWebConsole);
@@ -797,13 +682,6 @@ const AwsCredentialManager = () => {
         console.log(`Sound notifications ${newValue ? 'enabled !' : 'muted !'}`);
     };
 
-    const toggleBalloonEffect = async () => {
-
-        const newValue = !enableBalloonEffect;
-        localStorage.setItem('enableBalloonEffect', newValue);
-        setEnableBalloonEffect(newValue);
-        console.log(`Balloon effect ${newValue ? 'enabled' : 'disabled'} - memory usage ${newValue ? 'normal' : 'optimized'}`);
-    };
 
     const saveSettings = async () => {
 
@@ -872,7 +750,6 @@ const AwsCredentialManager = () => {
                     themeStyles={themeStyles}
                     isRunning={isRunning}
                     isDarkMode={isDarkMode}
-                    enableBalloonEffect={enableBalloonEffect}
                 />
 
                 <div className={`${styles.statusBar} status-bar-container`} style={themeStyles.statusBar}>
@@ -1034,34 +911,6 @@ const AwsCredentialManager = () => {
                                 </button>
                             </Tooltip>
 
-                            <Tooltip
-                                withArrow
-                                positioning="above"
-                                content={`Effects: ${enableBalloonEffect ? 'Enabled' : 'Disabled'}`}
-                                relationship="label"
-                            >
-                                <button
-                                    className={`${styles.iconButton} no-drag`}
-                                    style={{
-                                        ...themeStyles.iconButton,
-                                        width: "32px",
-                                        height: "32px",
-                                        backgroundColor: enableBalloonEffect ?
-                                            "#107c10" :
-                                            (isDarkMode ? "rgba(60, 60, 60, 0.6)" : "rgba(243, 242, 241, 0.6)"),
-                                        color: enableBalloonEffect ?
-                                            "#ffffff" :
-                                            (isDarkMode ? "#969696" : "#8a8886"),
-                                        border: enableBalloonEffect ?
-                                            "1px solid #107c10" :
-                                            `1px solid ${isDarkMode ? "#3c3c3c" : "#d1d1d1"}`,
-                                        opacity: enableBalloonEffect ? 1 : 0.7,
-                                    }}
-                                    onClick={toggleBalloonEffect}
-                                >
-                                    <CircleFilled style={{ fontSize: '14px' }} />
-                                </button>
-                            </Tooltip>
                         </div>
                     </div>
 
