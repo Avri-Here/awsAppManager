@@ -29,8 +29,6 @@ const baseConfig = {
         allowToChangeInstallationDirectory: false,
         createDesktopShortcut: true,
         createStartMenuShortcut: false,
-        // installerIcon: "src/assets/icons/managerAws.ico",
-        // uninstallerIcon: "src/assets/icons/managerAws.ico",
         shortcutName: "awsAppManager",
         differentialPackage: true,
         deleteAppDataOnUninstall: false
@@ -83,4 +81,6 @@ const platformSpecificConfigurations = {
     },
 };
 
-module.exports = platformSpecificConfigurations[process.platform];
+// Export platform-specific config by default, but allow override via environment variable
+const targetPlatform = process.env.BUILD_PLATFORM || process.platform;
+module.exports = platformSpecificConfigurations[targetPlatform] || platformSpecificConfigurations[process.platform];
