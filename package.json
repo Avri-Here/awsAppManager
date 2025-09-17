@@ -13,8 +13,7 @@
         "build": "vite build",
         "publishGithub": "node restConfig/publishGithub.mjs",
         "packDistOnly": "npm run build && electron-builder --dir --config restConfig/electronBuilder.config.js --publish=never",
-        "packageAppForYou": "npm run build && electron-builder --config restConfig/electronBuilder.config.js --publish=never",
-        "packageAppForMacCross": "npm run build && set BUILD_PLATFORM=darwin && electron-builder --mac --x64 --config restConfig/electronBuilder.config.js --publish=never"
+        "packageAppForYou": "npm run build && electron-builder --config restConfig/electronBuilder.config.js --publish=never"
     },
     "devDependencies": {
         "@vitejs/plugin-react": "^4.3.4",
