@@ -1,12 +1,12 @@
 
 
-import { fromIni } from "@aws-sdk/credential-providers";
-import { STSClient, GetSessionTokenCommand, AssumeRoleCommand, GetCallerIdentityCommand } from "@aws-sdk/client-sts";
-import { CodeartifactClient, GetAuthorizationTokenCommand } from "@aws-sdk/client-codeartifact";
-import { readFileSync, existsSync } from "fs";
+import { parse } from "ini";
 import { join } from "path";
 import { homedir } from "os";
-import { parse } from "ini";
+import { readFileSync, existsSync } from "fs";
+import { fromIni } from "@aws-sdk/credential-providers";
+import { CodeartifactClient, GetAuthorizationTokenCommand } from "@aws-sdk/client-codeartifact";
+import { STSClient, GetSessionTokenCommand, AssumeRoleCommand, GetCallerIdentityCommand } from "@aws-sdk/client-sts";
 
 
 
