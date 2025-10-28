@@ -735,8 +735,8 @@ const AwsCredentialManager = () => {
                         <div className="dropdown-container">
 
                             <Dropdown
-                                value={selectedAccount.name}
-                                selectedOptions={[selectedAccount.name]}
+                                value={selectedAccount.name.toLowerCase()}
+                                selectedOptions={[selectedAccount.name.toLowerCase()]}
                                 onOptionSelect={(_, { optionValue }) => {
 
                                     if (optionValue) {
@@ -760,12 +760,12 @@ const AwsCredentialManager = () => {
                                     transition: "all 0.15s ease",
                                 }}
                             >
-                                {accountList.map((account) => (
+                                {[...accountList].sort((a, b) => a.name.length - b.name.length).map((account) => (
                                     <Option key={account.name} value={account.name} text={account.name}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                            <CloudRegular style={{ fontSize: '10px', color: '#0078d4' }} />
+                                            <CloudRegular style={{ fontSize: '13px', color: '#0078d4' }} />
                                             <div>
-                                                <div style={{ fontWeight: '500', fontSize: '12px' }}>{account.name.toLowerCase()}</div>
+                                                <div style={{ fontWeight: 'bolder', fontSize: '13px' }}>{account.name.toLowerCase()}</div>
                                                 {/* <div style={{ fontSize: '10px', color: '#969696' }}>{account.ס;accountId}</div> */}
                                             </div>
                                         </div>
