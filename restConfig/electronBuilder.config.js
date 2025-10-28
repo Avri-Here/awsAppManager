@@ -81,6 +81,5 @@ const platformSpecificConfigurations = {
     },
 };
 
-// Export platform-specific config by default, but allow override via environment variable
 const targetPlatform = process.env.BUILD_PLATFORM || process.platform;
 module.exports = platformSpecificConfigurations[targetPlatform] || platformSpecificConfigurations[process.platform];
