@@ -748,6 +748,7 @@ const AwsCredentialManager = () => {
                                 }}
                                 disabled={isRunning || isStarting}
                                 className="no-drag"
+                                positioning="below-start"
                                 style={{
                                     height: "32px",
                                     minWidth: "140px",
