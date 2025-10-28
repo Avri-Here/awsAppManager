@@ -83,3 +83,4 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx electron-builder --config restConfig/electronBuilder.config.js --publish always
 
+
