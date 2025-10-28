@@ -483,6 +483,8 @@ button:not(:disabled):active {
     display: flex;
     align-items: center;
     gap: 8px;
+    position: relative;
+    z-index: 200;
 }
 
 .settings-controls-row {

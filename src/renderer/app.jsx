@@ -235,6 +235,7 @@ const useStyles = makeStyles({
         borderTop: "1px solid transparent",
         backdropFilter: "blur(10px)",
         position: "relative",
+        zIndex: 150,
     },
 
     statusLeft: {
@@ -746,9 +747,10 @@ const AwsCredentialManager = () => {
                                 }}
                                 disabled={isRunning || isStarting}
                                 className="no-drag"
+                                positioning="below-start"
                                 style={{
                                     height: "32px",
-                                    minWidth: "140px",
+                                    minWidth: "190px",
                                     fontSize: "12px",
                                     fontWeight: "500",
                                     borderRadius: "4px",
@@ -761,10 +763,10 @@ const AwsCredentialManager = () => {
                                 {accountList.map((account) => (
                                     <Option key={account.name} value={account.name} text={account.name}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                            <CloudRegular style={{ fontSize: '12px', color: '#0078d4' }} />
+                                            <CloudRegular style={{ fontSize: '10px', color: '#0078d4' }} />
                                             <div>
-                                                <div style={{ fontWeight: '500', fontSize: '12px' }}>{account.name}</div>
-                                                <div style={{ fontSize: '10px', color: '#969696' }}>{account.accountId}</div>
+                                                <div style={{ fontWeight: '500', fontSize: '12px' }}>{account.name.toLowerCase()}</div>
+                                                {/* <div style={{ fontSize: '10px', color: '#969696' }}>{account.ס;accountId}</div> */}
                                             </div>
                                         </div>
                                     </Option>
