@@ -577,13 +577,11 @@ const AwsCredentialManager = () => {
             console.log("Credential process finished successfully !");
 
             if (settings.enableSound) {
-
                 playAudioFile('success');
-                scheduleAutoRenewal();
-                setIsRunning(true);
-                return;
+            }
 
-            };
+            scheduleAutoRenewal();
+            setIsRunning(true);
 
         } catch (error) {
 
