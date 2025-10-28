@@ -507,7 +507,7 @@ const AwsCredentialManager = () => {
 
             setIsStarting(true);
 
-            ipcRenderer.send("setProgressBarWin", 1.1, 'indeterminate');
+            ipcRenderer.send("setProgressBar", 1.1, 'indeterminate');
             const mfaCode = await ipcRenderer.invoke("getMfaCodeValidation", settings.mfaSecret);
             console.log(`Got MFA code for user ${settings.username} using his shared secret ..`);
 
@@ -585,36 +585,15 @@ const AwsCredentialManager = () => {
 
             };
 
-
-            const notificationObj = {
-                iconType: "info", sound: false, timeout: 5000,
-                title: "✅ Credentials Updated Successfully !",
-                message: "All done ! Credentials are ready to use !",
-            };
-
-            await ipcRenderer.invoke("trayNotification", notificationObj);
-
-            scheduleAutoRenewal();
-            setIsRunning(true);
-
         } catch (error) {
 
             console.log(`Error on flow of credential process : ${error} ..`);
 
             if (settings.enableSound) {
                 playAudioFile('error');
-                return;
             };
 
-            const notificationObj = {
-                title: "An error occurred ..",
-                iconType: "error", sound: false, timeout: 5000,
-                message: "Click on this message for more details..",
-            };
-
-            const resEvent = await ipcRenderer.invoke("trayNotification", notificationObj);
-
-            if (resEvent === 'balloonClick') ipcRenderer.send("openDevTools");
+            console.error(error);
 
         } finally {
 
@@ -623,7 +602,7 @@ const AwsCredentialManager = () => {
             };
 
             setIsStarting(false);
-            ipcRenderer.send("setProgressBarWin", -1);
+            ipcRenderer.send("setProgressBar", -1);
         }
     };
 

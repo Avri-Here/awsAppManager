@@ -17,11 +17,19 @@ export const getAwsCredentialsPath = () => {
 };
 
 export const updateCredentialsFile = (profile, credentials, config) => {
+
     const credentialsPath = getAwsCredentialsPath();
 
     while (writeLocks.has(credentialsPath)) {
+        
         const delay = Math.random() * 100 + 50;
-        require('child_process').execSync(`ping 127.0.0.1 -n 1 > nul`, { timeout: delay });
+
+        if (process.env.IS_WINDOWS) {
+            
+            require('child_process').execSync(`ping 127.0.0.1 -n 1 > nul`, { timeout: delay });
+        } else {
+            require('child_process').execSync(`ping 127.0.0.1 > /dev/null`, { timeout: delay });
+        }
     }
 
     writeLocks.add(credentialsPath);

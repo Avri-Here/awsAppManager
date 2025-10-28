@@ -9,6 +9,7 @@ const isRunningOnWin = os.platform() === 'win32';
 const isDevMode = !app.isPackaged || !__dirname.includes('app.asar');
 
 
+isRunningOnWin && (process.env.IS_WINDOWS = true);
 
 const iconExt = isRunningOnWin ? 'ico' : isDevMode ? 'png' : 'icns';
 const dirFromRoot = isDevMode ? process.cwd() : process.resourcesPath;
@@ -39,6 +40,5 @@ process.env.MAIN_PAGE_PATH = join(__dirname, "..", "dist-renderer", "index.html"
 
 process.env.ICON_PATH = join(dirFromRoot, "src", "assets", "icons", `managerAws.${iconExt}`);
 process.env.NOTIFICATION_ICON_PATH = join(dirFromRoot, "src", "assets", "icons", `notification.png`);
-
 
 

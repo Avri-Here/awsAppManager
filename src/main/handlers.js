@@ -40,7 +40,7 @@ export default (mainWindow = new BrowserWindow()) => {
         mainWindow?.hide();
     });
 
-    ipcMain.on('setProgressBarWin', (_, value, mode = 'normal') => {
+    ipcMain.on('setProgressBar', (_, value, mode = 'normal') => {
 
         mainWindow?.setProgressBar(value, { mode });
 
