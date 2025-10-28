@@ -1,6 +1,6 @@
 {
     "name": "aws-dev-manager",
-    "version": "1.0.7",
+    "version": "1.0.10",
     "author": "Avraham Yom-Tov",
     "main": "dist-main/main.js",
     "description": "Aws Dev Manager !",
@@ -16,6 +16,7 @@
         "packageAppForYou": "npm run build && electron-builder --config restConfig/electronBuilder.config.js --publish=never",
         "packageAppForMac": "npm run build && electron-builder --mac --config restConfig/electronBuilder.config.js --publish=never",
         "pushAndPublishTag" : "git tag ${version} && git push origin ${version}"
+        
     },
     "devDependencies": {
         "@vitejs/plugin-react": "^4.3.4",
